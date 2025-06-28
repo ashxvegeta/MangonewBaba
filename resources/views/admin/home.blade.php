@@ -24,6 +24,7 @@
   </head>
   <body>
     {{session('user')}}
+    
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
