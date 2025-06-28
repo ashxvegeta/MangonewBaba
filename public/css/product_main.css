@@ -1,0 +1,228 @@
+.product-more-image {
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.product-more-image:hover {
+    border-color: #666;
+}
+
+.modal-dialog {
+    max-width: 90%;
+}
+
+.product-main-modal-image {
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+
+.product-main-image-box {
+    max-width: 100%;
+    /* Make sure it scales properly */
+    text-align: center;
+    /* Center the image */
+}
+
+
+.double-click-to-zoom-message {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.product-more-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.product-main-image {
+    width: 100%;
+    /* Make the image responsive */
+    max-width: 500px;
+    /* Restrict it to a maximum width */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: contain;
+}
+
+.product-main-image-div {
+    position: relative;
+    width: 95%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.product-more-image-div img {
+    width: 48px;
+    height: 65px;
+    padding-top: 4%;
+}
+
+
+.product-main-modal-image {
+    position: relative;
+    width: 310px;
+    height: auto;
+    transition: transform 0.5s ease-in-out;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+#modal-dialog_id {
+    max-width: 53%;
+}
+
+.product-more-image-div {
+    display: initial;
+    padding: inherit;
+}
+
+/* Centering the modal content */
+#full-image-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-main-image-div {
+    margin-bottom: 20px;
+}
+
+
+
+/* here started the right side of the css thinks  */
+.price_was {
+    text-decoration: line-through;
+    font-size: 15px;
+}
+
+.price_now {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.price_weight {
+    font-size: 14px;
+}
+
+.card_resize {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+.button-group {
+    margin: 40px 0px;
+}
+
+.why_choose {
+    background-color: rgb(247, 247, 247);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    text-align: center;
+}
+
+span.icons_circle {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.rotate-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-header[aria-expanded="true"] .rotate-icon {
+    transform: rotate(180deg);
+}
+
+
+@media (max-width: 991.98px) {
+    #modal-content_id {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+    }
+
+    .product-main-modal-image {
+        width: 310px;
+        height: 430px;
+    }
+
+    .product-more-image-div {
+        padding: unset;
+    }
+
+    #modal-dialog_id {
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .product-main-image {
+        max-width: 100%;
+        /* Allow the image to resize */
+        height: auto;
+    }
+
+    .product-main-image-box {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .product-more-image-div img {
+        width: 55px;
+        height: 60px;
+        margin-left: inherit;
+    }
+
+    .product-main-image-div {
+        width: 95%;
+        height: auto;
+    }
+
+    /* .product-main-modal-image {
+        width: 100%;
+        max-height: 80vh;
+    } */
+    .card_resize {
+        flex-direction: column;
+        width: 95%;
+        height: 95%;
+        font-size: small;
+    }
+
+    .button-group {
+        flex-direction: column;
+        /* Stack buttons vertically */
+    }
+
+    .why_choose {
+        height: 150px;
+        font-size: 10px;
+    }
+    .rating_box,.review_box{
+    font-size: smaller;
+}
+}

@@ -1,0 +1,112 @@
+/* here i have again applied the css for this page  */
+  .product-card {
+    width: 250px;
+}
+
+.filter-sidebar {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.product-container {
+    background: #fff;
+    border-radius: 5px;
+    display: grid;
+    gap: 1rem;
+}
+
+#hideFilterBtn,
+#relevanceBtn {
+    background-color: #fff;
+    cursor: pointer;
+    border: 1px solid;
+    transition: background-color 0.3s ease !important;
+}
+
+#hideFilterBtn:hover,
+#relevanceBtn:hover {
+    background-color: rgb(60, 60, 60) !important;
+    color: white !important;
+}
+
+.dotted_line {
+    border-top: 1px dotted #000;
+    margin-top: 20px;
+}
+
+.all-category-list {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+}
+
+.category-item {
+    padding: 5px 0;
+}
+
+.show-more-categories {
+    color: rgba(168, 171, 174, 0.76);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#collapseProductRating .fa-solid {
+    color: green;
+}
+
+#collapseProductRating .fa-regular {
+    color: #fff; /* Fixed missing # */
+}
+
+.product-container {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Default layout: stacked */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Image full width on larger screens */
+.product-image {
+    flex: none;
+    width: 100%;
+}
+
+/* Product details centered */
+.product-details {
+    flex: 1;
+    text-align: center;
+}
+
+/* Mobile View: Image on Left, Details on Right */
+@media (max-width: 768px) {
+    .product-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .product-image {
+        width: 40%;
+    }
+
+    .product-details {
+        width: 60%;
+        text-align: left;
+    }
+}

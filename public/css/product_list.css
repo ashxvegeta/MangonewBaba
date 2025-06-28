@@ -1,0 +1,188 @@
+/* Product Section Styling */
+.product-section-title {
+    margin: 20px 0;
+    position: relative;
+}
+
+.product-section-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+.view-all {
+    font-size: 14px;
+    float: right;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.product-card {
+    border: none;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 500px; /* Fixed height for product card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures even spacing between elements */
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.product-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for images */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.discount-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.index-product-details {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1; /* Fills the space if the text is short */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures all elements are spaced properly */
+}
+/* 
+.product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+} */
+.product-title {
+    display: inline-block;
+    max-width: 25ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.original-price {
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 5px;
+}
+
+.price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30px; /* Ensures consistent height for the price section */
+}
+
+.add-to-cart {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0; /* Prevents inconsistent spacing */
+}
+
+.quantity-select {
+    margin: 10px 0;
+}
+/* Responsive Adjustments for Mobile View */
+/* @media (max-width: 767.98px) {
+    .product-card img {
+        width: 100%;
+        height: 100px;
+        object-fit: fill;
+    }
+    .discount-badge {
+        font-size: 8px;
+
+    }
+    .product-card {
+        height: auto;
+    }
+
+} */
+/* Responsive Adjustments for Mobile View */
+@media (max-width: 767.98px) {
+    .product-card img {
+        width: 100%;
+        height: 100px;
+        object-fit: fill;
+    }
+
+    .discount-badge {
+        font-size: 8px;
+    }
+
+    .product-card {
+        height: auto;
+        min-height: 280px; /* Minimum height to maintain spacing */
+    }
+
+    .index-product-details {
+        padding: 10px; /* Reduced padding for mobile */
+        flex-grow: 0; /* Prevents the product details from growing and breaking layout */
+    }
+    .product-section-title h2 {
+        font-size: 17px;
+        margin-top: auto;
+    }
+    /* .product-title {
+        font-size: 14px;
+        white-space: normal; 
+    } */
+    .product-title {
+        max-width: 17ch;
+    }
+
+    .product-price {
+        font-size: 16px;
+    }
+
+    .original-price {
+        font-size: 12px;
+    }
+
+    .add-to-cart {
+        font-size: 12px; /* Slightly reduce button font size */
+    }
+}
+
+.grid-cols-9 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-12 {
+    grid-template-columns: repeat(4, 1fr);
+}
