@@ -80,7 +80,7 @@
           <td>{{ $category->created_at->format('d-m-Y') }}</td>
           <td>
             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-warning mb-1">Edit</a>
-          <a href="{{ route('categories.delete', $category->id) }}" class="btn btn-sm btn-danger mb-1">Delete</a>
+          <a href="{{ route('categories.delete', $category->id) }}"  onclick="return confirm('Are you sure you want to delete this category?');" class="btn btn-sm btn-danger mb-1">Delete</a>
           </td>
         </tr>
       @endforeach

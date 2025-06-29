@@ -55,8 +55,8 @@
           <li class="nav-item nav-category">
             <span class="nav-link">Navigation</span>
           </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+          <li class="nav-item menu-items" {{ request()->is('admin/home') ? 'active' : '' }}>
+            <a class="nav-link" href="{{route('admin.home')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -80,7 +80,7 @@
             </div>
           </li> -->
 
-           <li class="nav-item menu-items">
+           <li class="nav-item menu-items" {{ request()->is('view-admin-category') ? 'active' : '' }}>
             <a class="nav-link" href="{{route('view-admin-category')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
