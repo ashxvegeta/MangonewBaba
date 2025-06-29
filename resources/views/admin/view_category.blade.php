@@ -80,11 +80,7 @@
           <td>{{ $category->created_at->format('d-m-Y') }}</td>
           <td>
             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-warning mb-1">Edit</a>
-            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            </form>
+          <a href="{{ route('categories.delete', $category->id) }}" class="btn btn-sm btn-danger mb-1">Delete</a>
           </td>
         </tr>
       @endforeach

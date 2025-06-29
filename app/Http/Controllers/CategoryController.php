@@ -26,6 +26,8 @@ class CategoryController extends Controller
 
   public function AdminStoreCategory(Request $request)
    {
+
+    
     $request->validate([
         'name' => 'required|string|max:255',
         'slug' => 'required|string|max:255|unique:categories,slug',
@@ -45,6 +47,27 @@ class CategoryController extends Controller
         $image->move(public_path('images/categories'), $imageName);
     }
 
+        // If `id` is present, it's an update
+    if ($request->filled('id')) {
+        $category = Category::findOrFail($request->id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'image' => $imageName ?? $category->image, // keep old image if not replaced
+            'status' => $request->status,
+            'popular' => $request->popular,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_descrip' => $request->meta_descrip,
+        ]);
+
+        return redirect()->back()->with('success', 'Category updated successfully!');
+    }
+
+     // Else, it's a new entry
+
     Category::create([
         'name' => $request->name,
         'slug' => $request->slug,
@@ -58,6 +81,26 @@ class CategoryController extends Controller
     ]);
 
     return redirect()->back()->with('success', 'Category added successfully!');
+}
+
+public function AdminCategorydestroy($id)
+{
+    $category = Category::findOrFail($id);
+    if ($category->image) {
+        $imagePath = public_path('images/categories/' . $category->image);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+    }
+    $category->delete();
+    return redirect()->back()->with('success', 'Category deleted successfully!');
+
+}
+
+public function AdmineditCategory($id)
+{
+    $category = Category::findOrFail($id);
+    return view('admin.edit_category', compact('category'));
 }
 
 }

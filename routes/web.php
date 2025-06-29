@@ -29,9 +29,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/view-admin-category', [CategoryController::class, 'AdminviewCategory'])->name('view-admin-category');
     Route::get('/add-admin-category', [CategoryController::class, 'AdminaddCategory'])->name('add-admin-category');
     Route::post('/store-admin-category', [CategoryController::class, 'AdminStoreCategory'])->name('categories.store');
-    Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
+    Route::get('categories/{id}/delete', [CategoryController::class, 'AdminCategorydestroy'])->name('categories.delete');
+    Route::get('categories/{id}/edit', [CategoryController::class, 'AdmineditCategory'])->name('categories.edit');
 
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
