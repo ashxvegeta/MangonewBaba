@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('index');
@@ -31,6 +32,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/store-admin-category', [CategoryController::class, 'AdminStoreCategory'])->name('categories.store');
     Route::get('categories/{id}/delete', [CategoryController::class, 'AdminCategorydestroy'])->name('categories.delete');
     Route::get('categories/{id}/edit', [CategoryController::class, 'AdmineditCategory'])->name('categories.edit');
+
+    Route::get('/view-admin-product', [ProductController::class, 'AdminviewProduct'])->name('view-admin-product');
 
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');

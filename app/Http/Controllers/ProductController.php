@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product; // Ensure you import the Product model
 
 class ProductController extends Controller
 {
-    public function showDetails(Request $request)
+     public function AdminviewProduct()
     {
-        return view('product_main');
-    }
-    public function filter_product_list(Request $request)
-    {
-        return view('filter_product_list');
+
+        $products = Product::orderBy('created_at', 'desc')->paginate(5); // ✅ Correct
+        return view('admin.view_product', compact('products'));
     }
  
 }
