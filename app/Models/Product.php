@@ -12,18 +12,17 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'cate_id',
-        'name',
-        'small_description',
-        'description',
-        'original_price',
-        'selling_price', // fixed the name and quotes
-        'image',
-        'tax',
-        'status',
-        'trending',
-        'meta_title',
-        'meta_keywords',
-        'meta_description',
+    'cate_id',
+    'name',
+    'slug',
+    'small_description',
+    'description',
+    'original_price',
+    'selling_price',
+    'image',
+    'qty',
+    'tax',
+    'status',
+    'trending',
     ];
 }

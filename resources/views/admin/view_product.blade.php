@@ -12,10 +12,10 @@
         <div class="content-wrapper">
 <div class="row mb-4 align-items-center">
   <div class="col-12 col-sm-3 mb-2 mb-sm-0">
-    <h1 class="text-white  text-sm-left">All Categories</h1>
+    <h1 class="text-white  text-sm-left">All Products</h1>
   </div>
   <div class="col-12 col-sm-4  text-sm-right">
-    <a href="{{route('add-admin-category')}}" class="btn btn-primary">Add New Category</a>
+    <a href="{{route('add-admin-product')}}" class="btn btn-primary">Add New Product</a>
   </div>
 </div>
 
