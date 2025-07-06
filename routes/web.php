@@ -5,10 +5,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontendController;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [FrontendController::class, 'index']);
 Route::get('/signup', function () {
 return view('user.signup');
 });
@@ -38,9 +37,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/store-admin-product', [ProductController::class, 'AdminStoreProduct'])->name('product.store');
     Route::get('products/{id}/delete', [ProductController::class, 'AdminProductdestroy'])->name('products.delete');
     Route::get('products/{id}/edit', [ProductController::class, 'AdmineditProduct'])->name('products.edit');
-    
-    
-   
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');

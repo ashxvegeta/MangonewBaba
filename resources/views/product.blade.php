@@ -2,7 +2,7 @@
 <div class="container my-5" style="background-color: rgb(247 247 247);padding-top: 5px;padding-bottom: 30px;">
     <!-- Product Section -->
     <div class="product-section-title d-flex justify-content-between align-items-center">
-        <h2>My Smart Basket</h2>
+        <h2>Our Mangoes</h2>
         <div class="d-flex align-items-center">
             <a href="{{ route('product.filter_product_list') }}" class="view-all me-3">View All</a>
             <div class="d-flex align-items-center">
@@ -37,160 +37,29 @@
         <div class="d-flex min-w-full duration-300" style="transform: translateX(0%);">
             <ul class="d-flex justify-start p-0 m-0" style="list-style: none;">
                 <!-- Product Card 1-->
+                 @foreach($mangoesProducts as $product)
                 <li class="px-2">
                     <div class="product-card border rounded">
                         <div class="position-relative">
                             <span class="discount-badge">35% OFF</span>
                             <a href="{{ route('product.details') }}">
-                                <img src="https://www.bigbasket.com/media/uploads/p/m/40077518_1-fresho-cucumber.jpg?tr=w-154,q-80" alt="Banana" class="w-100">
+                                <img src="{{ asset('images/products/' . $product->image) }}" alt="Banana" class="w-100">
                             </a>
                         </div>
                         <div class="index-product-details p-2">
-                            <p class="product-title">Banana - Robusta</p>
+                            <p class="product-title">{{ $product->name }}</p>
                             <select class="form-control quantity-select">
                                 <option>1 kg</option>
                                 <option>2 kg</option>
                             </select>
-                            <p class="product-price">₹42 <span class="original-price">₹64.38</span></p>
+                            <p class="product-price">₹{{ $product->selling_price }}<span class="original-price">₹{{ $product->original_price }}</span></p>
                             <button class="btn btn-success btn-block add-to-cart">Add</button>
                         </div>
                     </div>
                 </li>
-                <!-- Product Card 2-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">20% OFF</span>
-                            <a href="{{ route('product.details') }}">
-                                <img src="https://www.bigbasket.com/media/uploads/p/m/10000025_32-fresho-banana-robusta.jpg?tr=w-154,q-80" alt="Chilli" class="w-100">
-                            </a>
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Chilli - Green Long</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>2 kg</option>
-                            </select>
-                            <p class="product-price">₹99.73 <span class="original-price">₹124.66</span></p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 3 -->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">20% OFF</span>
-                            <img src="https://www.bigbasket.com/media/uploads/p/m/10000333_15-fresho-chilli-green-long-medium.jpg?tr=w-154,q-80" alt="Coriander" class="w-100">
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Coriander Leaves</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>2 kg</option>
-                            </select>
-                            <p class="product-price">₹101.92 <span class="original-price">₹127.4</span></p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 4-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <img src="https://www.bigbasket.com/media/uploads/p/m/10000326_16-fresho-coriander-leaves.jpg?tr=w-154,q-80" alt="Cucumber" class="w-100">
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Cucumber</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>10 kg</option>
-                            </select>
-                            <p class="product-price">₹490</p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 5-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <a href="{{ route('product.details') }}">
-                                <img src="https://www.bbassets.com/media/uploads/p/m/10000070_16-fresho-carrot-orange.jpg?tr=w-154,q-80" alt="Cucumber" class="w-100">
-                            </a>
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Cucumber</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>10 kg</option>
-                            </select>
-                            <p class="product-price">₹490</p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 6-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">35% OFF</span>
-                            <a href="{{ route('product.details') }}">
-                                <img src="https://mangobaba.in/product_images/1712533605.jpeg" alt="Banana" class="w-100">
-                            </a>
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Banana - Robusta</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>2 kg</option>
-                            </select>
-                            <p class="product-price">₹42 <span class="original-price">₹64.38</span></p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 7-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <a href="{{ route('product.details') }}">
-                                <img src="https://www.bigbasket.com/media/uploads/p/m/10000326_16-fresho-coriander-leaves.jpg?tr=w-154,q-80" alt="Cucumber" class="w-100">
-                            </a>
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Cucumber</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>10 kg</option>
-                            </select>
-                            <p class="product-price">₹490</p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
-                </li>
-                <!-- Product Card 8-->
-                <li class="px-2">
-                    <div class="product-card border rounded">
-                        <div class="position-relative">
-                            <span class="discount-badge">20% OFF</span>
-                            <a href="{{ route('product.details') }}">
-                                <img src="https://mangobaba.in/product_images/1712533660.png" alt="Coriander" class="w-100">
-                            </a>
-                        </div>
-                        <div class="index-product-details p-2">
-                            <p class="product-title">Coriander Leaves</p>
-                            <select class="form-control quantity-select">
-                                <option>1 kg</option>
-                                <option>2 kg</option>
-                            </select>
-                            <p class="product-price">₹101.92 <span class="original-price">₹127.4</span></p>
-                            <button class="btn btn-success btn-block add-to-cart">Add</button>
-                        </div>
-                    </div>
+                @endforeach
+               
+              
                 </li>
             </ul>
         </div>

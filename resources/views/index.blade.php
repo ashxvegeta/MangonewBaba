@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', 'Webstore')
+@section('title', 'MangoBaba')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <link rel="stylesheet" href="{{ asset('css/product_list.css') }}">
 <link rel="stylesheet" href="{{ asset('css/filter_product_list.css') }}">
 <link rel="stylesheet" href="{{ asset('css/topoffers.css') }}">
-
+<!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
 @endpush
 
 @section('content')
