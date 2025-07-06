@@ -18,10 +18,6 @@
     <a href="{{route('add-admin-product')}}" class="btn btn-primary">Add New Product</a>
   </div>
 </div>
-
-
-          
-
           {{-- Success Message --}}
           @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -53,8 +49,8 @@
     <thead class="bg-white">
       <tr>
         <th>ID</th>
-        <th>cate_id</th>
-        <th>name</th>
+        <th>category name</th>
+        <th>Product name</th>
         <th>small_description</th>
         <th>description</th>
         <th>original_price</th>
@@ -71,7 +67,7 @@
       @foreach ($products as $product)
         <tr>
           <td>{{ $product->id }}</td>
-          <td>{{ $product->cate_id }}</td>
+          <td>{{ $product->category->name }}</td>
           <td>{{ $product->name }}</td>
           <td>{{ $product->small_description }}</td>
           <td>{{ $product->description }}</td>
@@ -88,8 +84,8 @@
             <td>{{ $product->status ? 'Active' : 'Inactive' }}</td>
             <td>{{ $product->trending ? 'Yes' : 'No' }}</td>
             <td>
-                 <a href="" class="btn btn-sm btn-warning mb-1">Edit</a>
-          <a href=""  onclick="return confirm('Are you sure you want to delete this category?');" class="btn btn-sm btn-danger mb-1">Delete</a>
+          <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-warning mb-1">Edit</a>
+          <a href="{{ route('products.delete', $product->id) }}"  onclick="return confirm('Are you sure you want to delete this product?');" class="btn btn-sm btn-danger mb-1">Delete</a>
             </td>
 
         

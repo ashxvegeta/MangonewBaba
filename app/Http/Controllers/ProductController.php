@@ -23,20 +23,20 @@ class ProductController extends Controller
     public function AdminStoreProduct(Request $request)
     {
         //  return $request->all();  // Uncomment this line for debugging
-         $request->validate([
-        'cate_id' => 'required|exists:categories,id',
-    'name' => 'required|string|max:255',
-    'slug' => 'required|string|max:255|unique:products,slug',
-    'small_description' => 'required|string|max:1000',
-    'description' => 'required|string',
-    'original_price' => 'required|numeric',
-    'selling_price' => 'required|numeric',
-    'qty' => 'required|integer|min:0',
-    'tax' => 'required|numeric|min:0',
-    'status' => 'required|boolean',
-    'trending' => 'required|boolean',
-    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-         ]);
+            $request->validate([
+            'cate_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:products,slug',
+            'small_description' => 'required|string|max:1000',
+            'description' => 'required|string',
+            'original_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+            'qty' => 'required|integer|min:0',
+            'tax' => 'required|numeric|min:0',
+            'status' => 'required|boolean',
+            'trending' => 'required|boolean',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
          $imageName = null;
 
             if ($request->hasFile('image')) {
@@ -85,5 +85,25 @@ class ProductController extends Controller
 
             return redirect()->back()->with('success', 'Product saved successfully!');
 
+    }
+
+    public function AdminProductdestroy($id)
+    {
+        $product = Product::findOrFail($id);
+        if ($product->image) {
+            $imagePath = public_path('images/products/' . $product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+        $product->delete();
+        return redirect()->back()->with('success', 'Product deleted successfully!');
+    }
+
+    public function AdmineditProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.edit_product', compact('product', 'categories'));
     }
 }
