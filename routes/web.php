@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/category', [FrontendController::class, 'Category'])->name('category');
 Route::get('/signup', function () {
 return view('user.signup');
 });

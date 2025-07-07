@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\Models\Category;
 
 
 class FrontendController extends Controller
@@ -15,4 +16,12 @@ class FrontendController extends Controller
         $mangoesProducts = Product::where('cate_id', 12)->get();
         return view('index', compact('mangoesProducts'));
     }
+
+    public function Category()
+    {
+        $categories = Category::where('status', 1)->get();
+        return view('user.category', compact('categories'));
+    }
 }
+
+
