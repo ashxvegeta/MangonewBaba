@@ -117,6 +117,6 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/index.js') }}"></script>
+<!-- <script src="{{ asset('js/index.js') }}"></script> -->
 <script src="{{ asset('js/filter_product_list.js') }}"></script>
 @endpush
