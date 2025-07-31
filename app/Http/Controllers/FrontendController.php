@@ -13,7 +13,7 @@ class FrontendController extends Controller
     //
     public function index()
     {
-        $mangoesProducts = Product::where('cate_id', 12)->get();
+        $mangoesProducts = Product::where('cate_id', 1)->get();
         return view('index', compact('mangoesProducts'));
     }
 
