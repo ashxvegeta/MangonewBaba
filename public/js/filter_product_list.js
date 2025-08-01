@@ -1,56 +1,129 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 
-            const sliderTrack = document.getElementById('sliderTrack');
-        const leftBtn = document.getElementById('slider-left');
-        const rightBtn = document.getElementById('slider-right');
-        const cards = sliderTrack.querySelectorAll('li');
-        const cardWidth = cards[0].offsetWidth + 16; // card width + padding/margin
-        const totalCards = cards.length;
-        const visibleCards = Math.floor(document.getElementById('product-slider').offsetWidth / cardWidth);
-        let currentIndex = 0;
+    
 
-        // 🔁 Clone first few cards for infinite scroll illusion
-        for (let i = 0; i < visibleCards; i++) {
+    (function () {
+    const sliderTrack = document.getElementById('sliderTrack');
+    const leftBtn = document.getElementById('slider-left');
+    const rightBtn = document.getElementById('slider-right');
+    const cards = sliderTrack.querySelectorAll('li');
+    if (!cards.length) {
+        console.warn('No product cards found.');
+        return;
+    }
+    const cardWidth = cards[0].offsetWidth + 16; // card width + padding/margin
+    const totalCards = cards.length;
+    const visibleCards = Math.floor(document.getElementById('product-slider').offsetWidth / cardWidth);
+    let currentIndex = 0;
+
+    // Clone first few cards for infinite scroll illusion
+    for (let i = 0; i < visibleCards; i++) {
+        if (cards[i]) {
             const clone = cards[i].cloneNode(true);
             sliderTrack.appendChild(clone);
         }
+    }
 
-        function updateSlider() {
-            const shift = currentIndex * -cardWidth;
-            sliderTrack.style.transform = `translateX(${shift}px)`;
-            sliderTrack.style.transition = 'transform 0.3s ease-in-out';
-        }
+    function updateSlider() {
+        const shift = currentIndex * -cardWidth;
+        sliderTrack.style.transform = `translateX(${shift}px)`;
+        sliderTrack.style.transition = 'transform 0.3s ease-in-out';
+    }
 
-        rightBtn.addEventListener('click', () => {
-            currentIndex++;
-            updateSlider();
-
-            // After sliding to the cloned end, reset position
-            if (currentIndex >= totalCards) {
-                setTimeout(() => {
-                    sliderTrack.style.transition = 'none';
-                    currentIndex = 0;
-                    sliderTrack.style.transform = `translateX(0px)`;
-                }, 300); // match the transition duration
-            }
-        });
-
-        leftBtn.addEventListener('click', () => {
-            if (currentIndex <= 0) {
-                currentIndex = totalCards;
+    rightBtn.addEventListener('click', () => {
+        currentIndex++;
+        updateSlider();
+        if (currentIndex >= totalCards) {
+            setTimeout(() => {
                 sliderTrack.style.transition = 'none';
-                sliderTrack.style.transform = `translateX(${currentIndex * -cardWidth}px)`;
-                setTimeout(() => {
-                    sliderTrack.style.transition = 'transform 0.3s ease-in-out';
-                    currentIndex--;
-                    updateSlider();
-                }, 10);
-            } else {
+                currentIndex = 0;
+                sliderTrack.style.transform = `translateX(0px)`;
+            }, 300); // match transition duration
+        }
+    });
+
+    leftBtn.addEventListener('click', () => {
+        if (currentIndex <= 0) {
+            currentIndex = totalCards;
+            sliderTrack.style.transition = 'none';
+            sliderTrack.style.transform = `translateX(${currentIndex * -cardWidth}px)`;
+            setTimeout(() => {
+                sliderTrack.style.transition = 'transform 0.3s ease-in-out';
                 currentIndex--;
                 updateSlider();
-            }
-        });
+            }, 10);
+        } else {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+})();
+
+// Home Category Slider
+(function () {
+    const sliderTrack = document.getElementById('homecategory-slider-track');
+    const leftBtn = document.getElementById('homecategory-slider-left');
+    const rightBtn = document.getElementById('homecategory-slider-right'); // Fixed ID typo
+    const cards = sliderTrack.querySelectorAll('li');
+    if (!cards.length) {
+        console.warn('No homecategory cards found.');
+        return;
+    }
+    const cardWidth = cards[0].offsetWidth + 16; // card width + padding/margin
+    const totalCards = cards.length;
+    const visibleCards = Math.floor(document.getElementById('homecategory-slider').offsetWidth / cardWidth);
+    let currentIndex = 0;
+
+    // Clone first few cards for infinite scroll illusion
+    for (let i = 0; i < visibleCards; i++) {
+        if (cards[i]) {
+            const clone = cards[i].cloneNode(true);
+            sliderTrack.appendChild(clone);
+        }
+    }
+
+    function updateSlider() {
+        const shift = currentIndex * -cardWidth;
+        sliderTrack.style.transform = `translateX(${shift}px)`;
+        sliderTrack.style.transition = 'transform 0.3s ease-in-out';
+    }
+
+    rightBtn.addEventListener('click', () => {
+        currentIndex++;
+        updateSlider();
+        if (currentIndex >= totalCards) {
+            setTimeout(() => {
+                sliderTrack.style.transition = 'none';
+                currentIndex = 0;
+                sliderTrack.style.transform = `translateX(0px)`;
+            }, 300); // match transition duration
+        }
+    });
+
+    leftBtn.addEventListener('click', () => {
+        if (currentIndex <= 0) {
+            currentIndex = totalCards;
+            sliderTrack.style.transition = 'none';
+            sliderTrack.style.transform = `translateX(${currentIndex * -cardWidth}px)`;
+            setTimeout(() => {
+                sliderTrack.style.transition = 'transform 0.3s ease-in-out';
+                currentIndex--;
+                updateSlider();
+            }, 10);
+        } else {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+})();
+
+    // Category Navigation
+
+    
+
+
+        
     const categoryNavigation = document.getElementById('category-navigation');
     const categoryLinks = categoryNavigation.querySelectorAll('li a');
 

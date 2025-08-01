@@ -1,0 +1,125 @@
+
+/* HomeCategory Section Styling */
+.homecategory-section-title {
+    margin: 20px 0;
+    position: relative;
+}
+
+.homecategory-section-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.view-all {
+    font-size: 14px;
+    float: right;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.homecategory-card {
+    border: none;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 300px; /* Fixed height for homecategory card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures even spacing between elements */
+}
+
+.homecategory-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.homecategory-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for images */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.index-homecategory-details {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1; /* Fills the space if the text is short */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+}
+
+.homecategory-title {
+    display: inline-block;
+    max-width: 25ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Slider Specific Styling */
+#homecategory-slider {
+    overflow-x: hidden; /* Ensure horizontal overflow is hidden */
+}
+
+#homecategory-slider-track {
+    display: flex;
+    transition: transform 0.3s ease; /* Smooth sliding */
+}
+
+#homecategory-slider-track li {
+    flex: 0 0 250px; /* Fixed width for each card */
+    margin-right: 15px; /* Space between cards */
+}
+
+#homecategory-slider-left, #homecategory-slider-right {
+    transition: background-color 0.2s;
+}
+
+#homecategory-slider-left:hover, #homecategory-slider-right:hover {
+    background-color: #e0e0e0;
+}
+
+/* Responsive Adjustments for Mobile View */
+@media (max-width: 767.98px) {
+    .homecategory-card img {
+        width: 100%;
+        height: 130px;
+        /* object-fit: fill; */
+    }
+
+    .homecategory-card {
+        height: auto;
+        min-height: 200px; /* Minimum height to maintain spacing */
+    }
+
+    .index-homecategory-details {
+        padding: 10px; /* Reduced padding for mobile */
+        flex-grow: 0; /* Prevents the homecategory details from growing and breaking layout */
+    }
+
+    .homecategory-section-title h2 {
+        font-size: 17px;
+        margin-top: auto;
+    }
+
+    .homecategory-title {
+        max-width: 17ch;
+        font-size: 14px;
+    }
+
+    #homecategory-slider-track li {
+        flex: 0 0 200px; /* Smaller card width on mobile */
+    }
+}

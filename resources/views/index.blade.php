@@ -5,6 +5,7 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <link rel="stylesheet" href="{{ asset('css/product_list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home_category.css') }}">
 <link rel="stylesheet" href="{{ asset('css/filter_product_list.css') }}">
 <link rel="stylesheet" href="{{ asset('css/topoffers.css') }}">
 <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
@@ -111,6 +112,8 @@
 <!-- </div> -->
 
 @include('product')
+
+@include('home_category')
 
 @include('topoffers')
  
