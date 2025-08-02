@@ -2,6 +2,7 @@
     <!-- HomeCategory Section -->
     <div class="homecategory-section-title d-flex justify-content-between align-items-center">
         <h2>Trending Category</h2>
+        <hr>
         <div class="d-flex align-items-center">
             <a href="{{ route('product.filter_product_list') }}" class="view-all me-3">View All</a>
             <div class="d-flex align-items-center">
