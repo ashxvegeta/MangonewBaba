@@ -1,43 +1,45 @@
 @extends('layouts.master')
 
-@section('title', 'Webstore')
+@section('title', 'Productmain')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/product_main.css') }}">
 @endpush
 
 @section('content')
+
+@include('user.header')
+@include('user.navbar')
 <div class="container pt-5">
         <div class="row g-0">
             <div class="col-sm-12 col-lg-5 product-main-image-col">
                 <div class="product-main-image-box">
                     <img class="product-main-image" rel="zoom"
-                        src="https://www.bigbasket.com/media/uploads/recipe/w-l/970_1.jpg?tr=w-undefined,q-80"
+                        src="{{ asset('images/products/' . $product->image) }}"
                         data-type="image" style="width: 500px;"
-                        xoriginal="https://www.bigbasket.com/media/uploads/recipe/w-l/726_1.jpg?tr=w-undefined,q-80"
                         alt="Main Product Image" style="width: 500px;">
                 </div>
 
                 <div class="product-more-image-container m-2">
                     <div class="m-1">
                         <img class="product-more-image"
-                            src="https://www.bbassets.com/media/uploads/p/m/10000150_20-fresho-onion.jpg?tr=w-154,q-80"
+                            src="{{ asset('images/products/' . $product->image) }}"
                             data-type="image"
-                            data-src="https://www.bigbasket.com/media/uploads/recipe/w-l/726_1.jpg?tr=w-undefined,q-80"
+                            data-src="{{ asset('images/products/' . $product->image) }}
                             alt="Thumbnail 1" width="43" height="40">
                     </div>
                     <div class="m-1">
                         <img class="product-more-image"
-                            src="https://www.bigbasket.com/media/uploads/p/l/10000263_14-fresho-strawberry.jpg"
+                               src="{{ asset('images/products/' . $product->image) }}"
                             data-type="image"
-                            data-src="https://www.bigbasket.com/media/uploads/p/l/10000263_14-fresho-strawberry.jpg"
+                            data-src="{{ asset('images/products/' . $product->image) }}"
                             alt="Thumbnail 2" width="43" height="40">
                     </div>
                     <div class="m-1">
                         <img class="product-more-image"
-                            src="https://www.bigbasket.com/media/uploads/p/m/10000074_20-fresho-cauliflower.jpg?tr=w-154,q-80"
+                             src="{{ asset('images/products/' . $product->image) }}"
                             data-type="image"
-                            data-src="https://www.bigbasket.com/media/uploads/p/m/10000074_20-fresho-cauliflower.jpg?tr=w-154,q-80"
+                            data-src="{{ asset('images/products/' . $product->image) }}"
                             alt="Thumbnail 2" width="43" height="40">
                     </div>
                 </div>
@@ -66,17 +68,18 @@
             <!-- here the right side of the code started -->
             <div class="col-sm-12 col-lg-6 product-details-col">
                 <div class="p-0">
-                    <h3 class="fw-bold mb-2">freshol Carrot - Orange (Loose), 500 g</h3>
+                    <h3 class="fw-bold mb-2">{{ $product->name }} </h3> <small class="text-white badge badge-danger">{{ $product->trending==1 ? 'Trending' : '' }}</small>
 
                     <div class="d-flex align-items-center my-0">
-                        <div class="text-muted">MRP: <span class="price_was">198</span></div>
+                        <div class="text-muted">MRP: <span class="price_was">{{ $product->original_price }}</span></div>
                     </div>
 
                     <div class="mb-4">
-                        <div class="text-secondary fw-bold price_now"> Price: ₹31.78
-                            <span class="price_weight">(&#8377; 0.06 / g)</span>
+                        <div class="text-secondary fw-bold price_now"> Price: ₹{{ $product->selling_price }}
+                            <!-- <span class="price_weight">(&#8377; 0.06 / g)</span> -->
                         </div>
-                        <div class="text-success fw-bold"> You Save: 20% OFF</div>
+                        <div class="text-success fw-bold"> You Save: {{ round((($product->original_price - $product->selling_price) / $product->original_price) * 100) }}% OFF</div>
+                        <small class="text-white badge badge-success">{{ $product->qty>0 ? 'In Stock' : 'Out of Stock' }}</small>
                         <div class="text-muted">( Inclusive of all taxes )</div>
                     </div>
 

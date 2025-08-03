@@ -102,7 +102,7 @@
     <div class="product-col mb-3">
         <div class="product-card border rounded">
             <div class="position-relative">
-                <a href="{{ route('product.details') }}">
+<a href="{{ url('category/'.$category->slug.'/'.$product->slug) }}">
                     <img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->name }}" class="w-100">
                 </a>
             </div>

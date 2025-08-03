@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontendController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
 Route::get('/view-category/{slug}', [FrontendController::class, 'ViewCategory'])->name('view-category');
+Route::get('/category/{cat_slug}/{product_slug}', [FrontendController::class, 'ViewProduct']);
 Route::get('/signup', function () {
 return view('user.signup');
 });
