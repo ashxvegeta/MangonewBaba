@@ -364,7 +364,7 @@
     position: fixed;
     top: 0px;
     padding: 7px 10px;
-    width: 75%;
+    width: 90%;
     z-index: 1000;
     background-color: white;
     transition: top 0.3s ease-in-out;
@@ -413,13 +413,13 @@
             }
 
             .search-bar {
-                margin: 0 -12px;
+                margin: 0 5px;
             }
 
    
 
             .sticky {
-    width: 94%;
+    width: 90%;
 
 }
         }
