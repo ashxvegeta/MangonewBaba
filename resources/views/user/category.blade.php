@@ -86,27 +86,26 @@
 <!-- <div class="container-fluid"> -->
 <div class="container my-3">
     <h2>All Categories</h2>
-    <div class="row mt-4 rounded">
-        @foreach($categories as $category)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card h-100 p-2">
-                <a href="{{ route('product.details', $category->id) }}">
-                    <img src="{{ asset('images/categories/' . $category->image) }}"
-                         alt="{{ $category->name }}"
-                         class="card-img-top"
-                         style="height: 200px; object-fit: cover;">
-                </a>
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ $category->name }}</h5>
-                    <!-- <p class="card-title m-0">{{ $category->description }}</p> -->
-                     <p class="card-title m-0" style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">
-  {{ $category->description }}
-</p>
-                </div>
+<div class="row mt-4 rounded">
+    @foreach($categories as $category)
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 p-2 cat-card">
+            <a href="{{ route('view-category', $category->slug) }}">
+                <img src="{{ asset('images/categories/' . $category->image) }}"
+                     alt="{{ $category->name }}"
+                     class="card-img-top"
+                     style="height: 200px; object-fit: cover;">
+            </a>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ $category->name }}</h5>
+                <p class="card-title m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">
+                    {{ $category->description }}
+                </p>
             </div>
         </div>
-        @endforeach
     </div>
+    @endforeach
+</div>
 </div>
 
 

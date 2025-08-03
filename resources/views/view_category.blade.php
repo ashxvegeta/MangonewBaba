@@ -88,12 +88,16 @@
 <div class="container my-5" >
     <!-- Product Section -->
     <div class="product-section-title d-flex justify-content-between align-items-center">
-        <h2>{{ $category->name }}</h2>
+        <h2>{{ $category->name }} 
+            @if($products->count() > 1)
+       ({{ $products->count() }})
+    @endif</h2>
      
     </div>
 
     <!-- Product List -->
 <div class="product-row" id="product-row">
+    @if($products->count() > 1)
     @foreach($products as $product)
     <div class="product-col mb-3">
         <div class="product-card border rounded">
@@ -115,6 +119,11 @@
         </div>
     </div>
     @endforeach
+    @else
+    <div class="col-12 text-center">
+        <p class="text-muted">No products found in this category.</p> 
+    @endif      
+
 </div>
     
 

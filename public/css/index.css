@@ -448,5 +448,16 @@
     }
 }
 
-
+    @media (max-width: 575.98px) {
+    .cat-card .card {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    .cat-card .card-img-top {
+        height: 150px !important;
+    }
+    .cat-card .card-title {
+        font-size: 0.9rem;
+    }
+}
         
