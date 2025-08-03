@@ -23,6 +23,16 @@ class FrontendController extends Controller
         $categories = Category::where('status', 1)->get();
         return view('user.category', compact('categories'));
     }
+
+    public function ViewCategory($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        if (!$category) {
+            return redirect()->route('category')->with('error', 'Category not found');
+        }
+        $products = Product::where('cate_id', $category->id)->where('status', 1)->get();
+        return view('view_category', compact('category', 'products'));
+    }
 }
 
 

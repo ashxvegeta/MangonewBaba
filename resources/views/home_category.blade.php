@@ -49,7 +49,7 @@
                 <li class="px-2">
                     <div class="homecategory-card border rounded" style="">
                         <div class="position-relative">
-                            <a href="{{ route('product.details') }}">
+                            <a href="{{ route('view-category', $category->slug) }}">
                                 <img src="{{ asset('images/categories/' . ($category->image ?? 'default.jpg')) }}" alt="{{ $category->name }}" class="w-100">
                             </a>
                         </div>
