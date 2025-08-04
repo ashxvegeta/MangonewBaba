@@ -81,6 +81,13 @@
                         <div class="text-success fw-bold"> You Save: {{ round((($product->original_price - $product->selling_price) / $product->original_price) * 100) }}% OFF</div>
                         <small class="text-white badge badge-success">{{ $product->qty>0 ? 'In Stock' : 'Out of Stock' }}</small>
                         <div class="text-muted">( Inclusive of all taxes )</div>
+
+                        <label for="Quantity">Quantity</label>
+                        <div class="input-group text-center mb-3" style="width: 130px;">
+                        <span class="input-group-text decrement-btn" style="cursor: pointer;">-</span>
+                        <input type="text" name="quantity" class="form-control text-center qty-input" value="1" >
+                        <span class="input-group-text increment-btn" style="cursor: pointer;">+</span>
+                        </div>
                     </div>
 
                     <div class="mb-2">
@@ -306,4 +313,27 @@
 
 @push('scripts')
 <script src="{{ asset('js/product_main.js') }}"></script>
+<script>
+    $(document).ready(function() {
+      $('.increment-btn').on('click', function() {
+          var inc_value = $('.qty-input').val();
+          var value = parseInt(inc_value, 10);
+          value = isNaN(value) ? 0 : value;
+          if (value < 10) {
+              value++;
+              $('.qty-input').val(value);
+          }
+      });
+
+      $('.decrement-btn').on('click', function() {
+          var inc_value = $('.qty-input').val();
+          var value = parseInt(inc_value, 10);
+          value = isNaN(value) ? 0 : value;
+          if (value > 1) {
+              value--;
+              $('.qty-input').val(value);
+          }
+      });
+    });
+</script>
 @endpush
