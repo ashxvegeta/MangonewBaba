@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
-
+use App\Http\Controllers\CartController;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
 Route::get('/view-category/{slug}', [FrontendController::class, 'ViewCategory'])->name('view-category');
@@ -41,5 +41,6 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('products/{id}/delete', [ProductController::class, 'AdminProductdestroy'])->name('products.delete');
     Route::get('products/{id}/edit', [ProductController::class, 'AdmineditProduct'])->name('products.edit');
 });
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');

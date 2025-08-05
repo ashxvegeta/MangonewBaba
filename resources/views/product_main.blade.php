@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
-@section('title', 'Productmain')
+@section('title', $product->name . ($product->slug ? ' - ' . $product->slug : ''))
+
+
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/product_main.css') }}">
@@ -82,6 +84,7 @@
                         <small class="text-white badge badge-success">{{ $product->qty>0 ? 'In Stock' : 'Out of Stock' }}</small>
                         <div class="text-muted">( Inclusive of all taxes )</div>
 
+                        <input type="text" class="prod_id" value="{{ $product->id }}" hidden>
                         <label for="Quantity">Quantity</label>
                         <div class="input-group text-center mb-3" style="width: 130px;">
                         <span class="input-group-text decrement-btn" style="cursor: pointer;">-</span>
@@ -135,14 +138,15 @@
                         </div>
                     </div>
 
-                    <div class="d-flex flex-column flex-md-row gap-3 button-group">
-                        <button class="btn btn-danger flex-grow-1 py-3">
-                            <i class="fas fa-shopping-basket me-2"></i>Add to basket
-                        </button>
-                        <button class="btn btn-outline-secondary flex-grow-1 py-3">
-                            <i class="fas fa-bookmark me-2"></i>Save for later
-                        </button>
+                    <div class="d-flex flex-column flex-md-row button-group">
+                    <button class="btn btn-danger addToCartBtn flex-grow-1 py-3 mb-3 mb-md-0 mr-md-3">
+                    <i class="fas fa-shopping-basket mr-2"></i>Add to basket
+                    </button>
+                    <button class="btn btn-outline-secondary flex-grow-1 py-3">
+                    <i class="fas fa-bookmark mr-2"></i>Save for later
+                    </button>
                     </div>
+
 
                     <div class="border-top pt-3">
                         <a href="#" class="text-decoration-none text-primary">
@@ -314,6 +318,29 @@
 @push('scripts')
 <script src="{{ asset('js/product_main.js') }}"></script>
 <script>
+
+    // Add to Cart functionality
+    $(document).on('click', '.addToCartBtn', function(e) {
+        e.preventDefault();
+        var prod_id = $('.prod_id').val();
+        var qty = $('.qty-input').val();
+
+        $.ajax({
+            method: "POST",
+            url: "/add-to-cart",
+            data: {
+                'prod_id': prod_id,
+                'prod_qty': qty,
+                '_token': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                alert(response.status);
+            }
+        });
+    });
+
+
+    //increment and decrement functionality for quantity input
     $(document).ready(function() {
       $('.increment-btn').on('click', function() {
           var inc_value = $('.qty-input').val();
