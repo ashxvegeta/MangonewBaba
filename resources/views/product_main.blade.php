@@ -12,6 +12,20 @@
 
 @include('user.header')
 @include('user.navbar')
+
+
+  <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none"
+     role="alert"
+     style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 300px; max-width: 500px; text-align: center;">
+    <span id="success-message">{{ session('success') }}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+            style="position: absolute; top: 0px; right: 15px;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+
 <div class="container pt-5">
         <div class="row g-0">
             <div class="col-sm-12 col-lg-5 product-main-image-col">
@@ -321,23 +335,40 @@
 
     // Add to Cart functionality
     $(document).on('click', '.addToCartBtn', function(e) {
-        e.preventDefault();
-        var prod_id = $('.prod_id').val();
-        var qty = $('.qty-input').val();
+    e.preventDefault();
+    var prod_id = $('.prod_id').val();
+    var qty = $('.qty-input').val();
 
-        $.ajax({
-            method: "POST",
-            url: "/add-to-cart",
-            data: {
-                'prod_id': prod_id,
-                'prod_qty': qty,
-                '_token': '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                alert(response.status);
+    $.ajax({
+        method: "POST",
+        url: "/add-to-cart",
+        data: {
+            prod_id: prod_id,
+            prod_qty: qty,
+            _token: '{{ csrf_token() }}' // Ensure this is properly rendered
+        },
+        success: function(response) {
+            if (response.status === 'success') {
+               $('#success-message').text(response.message);
+                $('#success-alert').removeClass('d-none'); // Show the alert
+                // Optionally hide the alert after a few seconds
+                setTimeout(function() {
+                    $('#success-alert').addClass('d-none');
+                }, 3000); // Hide after 3 seconds
             }
-        });
+        },
+        error: function(xhr) {
+            if (xhr.status === 401) {
+                // Handle unauthenticated response
+                // alert(xhr.responseJSON.message || 'You must be logged in to add items to the cart.');
+                window.location.href = '/signin';
+            } else {
+                // Handle other errors
+                alert('An error occurred. Please try again.');
+            }
+        }
     });
+});
 
 
     //increment and decrement functionality for quantity input
@@ -362,5 +393,8 @@
           }
       });
     });
+
+
+    
 </script>
 @endpush

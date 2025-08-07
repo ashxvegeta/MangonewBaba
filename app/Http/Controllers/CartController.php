@@ -11,6 +11,7 @@ class CartController extends Controller
     //
     public function addToCart(Request $request)
     {
+        
         $productId = $request->input('prod_id');
         $quantity = $request->input('prod_qty');
 
@@ -25,6 +26,6 @@ class CartController extends Controller
             ['user_id' => $user->id, 'prod_id' => $productId],
             ['prod_qty' => $quantity]
         );
-        return response()->json(['status' => 'success', 'message' => 'Item added to cart successfully!']);
+        return response()->json(['status' => 'success', 'message' => 'An item has been added to cart successfully!']);
     }
 }
