@@ -101,9 +101,20 @@
                         <input type="text" class="prod_id" value="{{ $product->id }}" hidden>
                         <label for="Quantity">Quantity</label>
                         <div class="input-group text-center mb-3" style="width: 130px;">
-                        <span class="input-group-text decrement-btn" style="cursor: pointer;">-</span>
-                        <input type="text" name="quantity" class="form-control text-center qty-input" value="1" >
-                        <span class="input-group-text increment-btn" style="cursor: pointer;">+</span>
+                        <span class="input-group-text decrement-btn" style="cursor: pointer;    background:#dc3545;
+    color: #fff;
+">-</span>
+                        @php
+    // Get existing cart item quantity for this product (if exists)
+    $cartItem = \App\Models\Cart::where('user_id', session('user')->id)
+                ->where('prod_id', $product->id)
+                ->first();
+    $existingQty = $cartItem ? $cartItem->prod_qty : 1;
+@endphp
+                        <input type="text" name="quantity" class="form-control text-center qty-input" value="{{ $existingQty }}" >
+                        <span class="input-group-text increment-btn" style="cursor: pointer;    background:#dc3545;;
+    color: #fff;
+">+</span>
                         </div>
                     </div>
 
