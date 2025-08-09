@@ -28,4 +28,11 @@ class CartController extends Controller
         );
         return response()->json(['status' => 'success', 'message' => 'An item has been added to cart successfully!']);
     }
+
+    public function viewCart(Request $request)
+    {
+        
+        $cartItems = Cart::where('user_id',session('user')->id)->get();
+        return view('cart', compact('cartItems'));
+    }
 }

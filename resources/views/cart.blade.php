@@ -1,0 +1,82 @@
+
+
+@extends('layouts.master')
+
+@section('title', 'Basket Cart')
+
+
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/basketcart.css') }}">
+@endpush
+
+@section('content')
+
+@include('user.header')
+@include('user.navbar')
+
+
+
+
+
+<div class="container p-4">
+    <div class="row fw-bold py-2  mb-2 ">
+        <div class="col-6 fw-bold">Delivery </div>
+        <div class="col-6 text-right fw-bold">2 Products</div>
+      
+    </div>
+ 
+    
+    <div class="row fw-bold py-2 quantity-div">
+        <div class="col-md-6">Items</div>
+        <div class="col-md-3 text-center">Quantity</div>
+        <div class="col-md-3 text-right">Sub-total</div>
+    </div>
+
+    <div class="cart-item mt-2">
+        <div class="row align-items-center">
+            <!-- Product Image -->
+            <div class="col-md-2 col-4">
+                <img src="https://mangobaba.in/product_images/1749060078.png" class="img-fluid rounded" alt="Product">
+            </div>
+
+            <!-- Product Details -->
+            <div class="col-md-4 col-8">
+                <div class="seller-info"><i class="fa fa-check-circle"></i> Har Din Sasta!</div>
+                <div class="fw-semibold">Playing Cards Rummy, Bridge & Poker, Premium Quality, Assorted colours</div>
+                <div>
+                    <span class="price">₹49</span>
+                    <span class="old-price ms-1">₹50</span>
+                </div>
+                <div class="saved">Saved: ₹1</div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="col-md-3 col-6 text-center mt-3 mt-md-0">
+                <div class="quantity-control mx-auto">
+                    <button type="button">−</button>
+                    <input type="text" value="1" readonly>
+                    <button type="button">+</button>
+                </div>
+                <div class="actions mt-2">
+                    <a href="#" class="text-danger me-2">Delete</a> | 
+                    <a href="#" class="text-secondary ms-2">Save for later</a>
+                </div>
+            </div>
+
+            <!-- Sub-total -->
+            <div class="col-md-3 col-6 text-right mt-3 mt-md-0">
+                <span class="price">₹49</span>
+            </div>
+        </div>
+    </div>
+
+        
+        
+@endsection
+
+@push('scripts')
+<script src="{{ asset('js/product_main.js') }}"></script>
+<script>
+</script>
+@endpush

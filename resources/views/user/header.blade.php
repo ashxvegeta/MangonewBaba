@@ -19,7 +19,7 @@
 
             <!-- Add to Cart Icon -->
             <div class="addtocartlogo px-2">
-                <a href="#" class="addtocart-btn">
+                <a href="{{ route('view_cart') }}" class="addtocart-btn">
                     <i class="fa fa-shopping-cart"></i>
                 </a>
             </div>

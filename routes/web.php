@@ -43,6 +43,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 });
 Route::middleware(['user'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/basketcart', [CartController::class, 'viewCart'])->name('view_cart');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
