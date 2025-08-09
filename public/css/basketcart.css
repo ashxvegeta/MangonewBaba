@@ -49,8 +49,26 @@
             background-color: #eeeeee;
         }
 
-        @media (max-width: 768px) {
-        .quantity-div{
-          display: none;
+        .delivery-div,
+        .quantity-div {
+            margin: 0;
+             border-bottom: 1px solid #eee;
+             font-weight: bold;
         }
+
+        .delivery-div > [class*="col-"],
+        .quantity-div > [class*="col-"] {
+            padding-left: 15px;
+            padding-right: 15px; /* matches Bootstrap column padding */
+        }
+
+        .quantity-div {
+            color: #afafaf;
+        }
+
+        /* Hide only for mobile devices (phones) */
+        @media (max-width: 480px) {
+            .quantity-div {
+             display: none;
+             }
         }
