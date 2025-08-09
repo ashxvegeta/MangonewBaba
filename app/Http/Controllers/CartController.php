@@ -35,4 +35,22 @@ class CartController extends Controller
         $cartItems = Cart::where('user_id',session('user')->id)->get();
         return view('cart', compact('cartItems'));
     }
+
+    public function deleteCartItem(Request $request)
+    {
+        
+        $prod_id = $request->input('prod_id');
+        $userId = session('user')->id;
+
+        // Find the cart item
+        $cartItem = Cart::where('user_id', $userId)->where('prod_id', $prod_id)->first();
+
+        if ($cartItem) {
+            // Delete the cart item
+            $cartItem->delete();
+            return response()->json(['status' => 'success', 'message' => 'Cart item deleted successfully!']);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Cart item not found.']);
+        }
+    }
 }

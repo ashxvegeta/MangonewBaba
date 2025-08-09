@@ -65,6 +65,9 @@
         .quantity-div {
             color: #afafaf;
         }
+        .delete-cart-item{
+            text-decoration: none;
+        }
 
         /* Hide only for mobile devices (phones) */
         @media (max-width: 480px) {

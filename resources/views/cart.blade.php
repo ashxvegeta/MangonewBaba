@@ -14,7 +14,15 @@
 
 @include('user.header')
 @include('user.navbar')
-
+ <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none"
+     role="alert"
+     style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 300px; max-width: 500px; text-align: center;">
+    <span id="success-message">{{ session('success') }}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+            style="position: absolute; top: 0px; right: 15px;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 
 
@@ -22,7 +30,7 @@
 <div class="container p-4">
     <div class="row fw-bold py-2  mb-2 delivery-div">
         <div class="col-6 fw-bold">Delivery </div>
-        <div class="col-6 text-right fw-bold">{{ $cartItems->count() }} Products</div>
+        <div class="col-6 text-right fw-bold"><span class="product-count">{{ $cartItems->count() }}</span>&nbspProducts</div>
 
     </div>
  
@@ -62,7 +70,7 @@
                     <button type="button" class="increment-btn">+</button>
                 </div>
                 <div class="actions mt-2">
-                    <a href="#" class="text-danger me-2">Delete</a> | 
+                    <a href="" class="text-danger me-2 delete-cart-item" data-id="{{ $item->prod_id }}">Delete</a> |
                     <a href="#" class="text-secondary ms-2">Save for later</a>
                 </div>
             </div>
