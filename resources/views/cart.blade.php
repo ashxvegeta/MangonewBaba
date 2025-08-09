@@ -34,11 +34,13 @@
     </div>
 
     @foreach($cartItems as $item)
-    <div class="cart-item mt-2">
+    <div class="cart-item mt-2 product-data">
         <div class="row align-items-center">
             <!-- Product Image -->
             <div class="col-md-2 col-4">
-                <img src="{{ asset('images/products/' . $item->product->image) }}" class="img-fluid rounded" alt="Product">
+                <a href="{{ url('category/'.$item->product->category->slug.'/'.$item->product->slug) }}">
+                    <img src="{{ asset('images/products/' . $item->product->image) }}" class="img-fluid rounded" alt="Product">
+                </a>
             </div>
 
             <!-- Product Details -->
@@ -55,9 +57,9 @@
             <!-- Quantity -->
             <div class="col-md-3 col-6 text-center mt-3 mt-md-0">
                 <div class="quantity-control mx-auto">
-                    <button type="button">−</button>
-                    <input type="text" value="{{ $item->prod_qty }}" readonly>
-                    <button type="button">+</button>
+                    <button type="button" class="decrement-btn">−</button>
+                    <input type="text" value="{{ $item->prod_qty }}" readonly class="qty-input">
+                    <button type="button" class="increment-btn">+</button>
                 </div>
                 <div class="actions mt-2">
                     <a href="#" class="text-danger me-2">Delete</a> | 
@@ -67,7 +69,7 @@
 
             <!-- Sub-total -->
             <div class="col-md-3 col-6 text-right mt-3 mt-md-0">
-                <span class="price">₹{{ $item->product->selling_price}}</span>
+                <span class="price">₹{{ $item->product->selling_price * $item->prod_qty }} </span>
             </div>
         </div>
     </div>
@@ -76,8 +78,4 @@
         
 @endsection
 
-@push('scripts')
-<script src="{{ asset('js/product_main.js') }}"></script>
-<script>
-</script>
-@endpush
+
