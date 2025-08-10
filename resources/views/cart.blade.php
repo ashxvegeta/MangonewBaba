@@ -114,7 +114,7 @@
         <button type="button" class="delivery-btn delivery-schedule ml-2">
           <div class="d-flex align-items-center">
             <i class="fa fa-clock-o fa-lg mr-2"></i>
-            <div class="text-left">
+            <div class="text-left Schedule-delivery">
               <div class="fw-600">Schedule delivery</div>
               <small class="d-block text-muted">Get it in 2 hrs</small>
             </div>

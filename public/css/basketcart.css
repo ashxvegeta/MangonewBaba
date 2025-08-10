@@ -202,4 +202,15 @@
             .quantity-div {
              display: none;
              }
+             .Schedule-delivery{
+                  display: ruby;
+                  font-size: 16px;
+             }
+             .delivery-btn{
+              width: 226px;
+             }
+             .btn-proceed{
+              font-size: 14px;
+               width: 226px;
+             }
         }
