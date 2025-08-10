@@ -111,11 +111,15 @@ $(document).on('click', '.addToCartBtn', function(e) {
                     //update the price of particular item
                    let newSubtotal = response.subtotal; // must be returned from backend
                     $btn.closest('.cart-item').find('.item-subtotal').text('₹' + newSubtotal);
-
                     // ✅ Update total price
                      let newTotal = response.total; // must be returned from backend
                      $('.total-price').text('₹' + newTotal);
-                       // Optionally, show a success message
+                     // Update per product saving
+                     let newPerProductSaving = response.perProductSaving; // must be returned from backend
+                     $btn.closest('.cart-item').find('.saved').text('Saved: ₹' + newPerProductSaving);
+                     // Update total savings
+                     $('.badge-savings').text('Savings: ₹' + response.totalSavings);
+                     // Optionally, show a success message
                        $('#success-message').text(response.message);
                        $('#success-alert').removeClass('d-none');
                        setTimeout(function() {

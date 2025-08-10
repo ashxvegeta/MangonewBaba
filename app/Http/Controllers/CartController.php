@@ -69,6 +69,11 @@ class CartController extends Controller
             $cartItem->save();
             // Calculate new subtotal for this perticular product 
             $subtotal = $cartItem->product->selling_price * $cartItem->prod_qty;
+            // Calculate per product saving
+            $perProductSaving = round($cartItem->prod_qty * ($cartItem->product->original_price - $cartItem->product->selling_price), 2);
+            $totalSavings = Cart::where('user_id', $userId)
+            ->get()
+            ->sum(fn($item) => $item->prod_qty * ($item->product->original_price - $item->product->selling_price));
             // Calculate new total for all items in cart
             $total = Cart::where('user_id', $userId)
             ->get()
@@ -76,6 +81,8 @@ class CartController extends Controller
             return response()->json([
             'status' => 'success',
             'message' => 'Cart item updated successfully!',
+            'perProductSaving' => $perProductSaving,
+            'totalSavings' => $totalSavings,
             'subtotal' => $subtotal,
             'total' => $total
         ]);

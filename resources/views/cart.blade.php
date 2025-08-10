@@ -60,7 +60,10 @@
                     <span class="price">₹{{ $item->product->selling_price}}</span>
                     <span class="old-price ms-1">₹{{ $item->product->original_price}}</span>
                 </div>
-                <div class="saved">Saved: ₹{{ $item->product->original_price - $item->product->selling_price }}</div>
+                 @php
+                $perproduct_saving = $item->prod_qty* ($item->product->original_price - $item->product->selling_price) ;
+                @endphp
+                <div class="saved">Saved: ₹{{ $perproduct_saving }}</div>
             </div>
 
             <!-- Quantity -->
@@ -84,7 +87,7 @@
     </div>
       @php
         $total += $item->product->selling_price * $item->prod_qty;
-        $totasavings += $item->product->original_price - $item->product->selling_price;
+        $totasavings += ($item->product->original_price - $item->product->selling_price) * $item->prod_qty;
       @endphp
 
         @endforeach
