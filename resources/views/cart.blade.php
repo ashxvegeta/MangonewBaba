@@ -40,6 +40,7 @@
 
     @php
         $total = 0;    
+        $totasavings=0;
     @endphp
     @foreach($cartItems as $item)
     <div class="cart-item mt-2 product-data">
@@ -83,35 +84,29 @@
     </div>
       @php
         $total += $item->product->selling_price * $item->prod_qty;
+        $totasavings += $item->product->original_price - $item->product->selling_price;
       @endphp
 
         @endforeach
 
         <!-- Sticky Cart Footer -->
-<div class="cart-footer fixed-bottom">
-  <div class="cart-footer-inner container">
+<div class="cart-footer fixed-bottom container">
+  <div class="cart-footer-inner">
     <!-- TOP: Subtotal & Savings -->
     <div class="cf-top d-flex align-items-center justify-content-between">
       <div class="cf-subtotal">
-        Subtotal: <span class="cf-subtotal-amt">₹{{ $subtotal ?? '0.00' }}</span>
+        Subtotal: <span class="cf-subtotal-amt total-price">₹{{ $total ?? '0.00' }}</span>
       </div>
       <div class="cf-savings">
-        <span class="badge badge-savings">Savings: ₹{{ $savings ?? '0.00' }}</span>
+        <span class="badge badge-savings">Savings: ₹{{ $totasavings ?? '0.00' }}</span>
       </div>
     </div>
 
     <!-- BOTTOM: Delivery options (left) + Proceed button (right) -->
     <div class="cf-bottom d-flex align-items-center">
       <div class="delivery-wrap d-flex flex-wrap">
-        <button type="button" class="delivery-btn delivery-now active">
-          <div class="d-flex align-items-center">
-            <i class="fa fa-bolt fa-lg mr-2"></i>
-            <div class="text-left">
-              <div class="fw-600">Get it now</div>
-              <small class="d-block text-muted">9 mins</small>
-            </div>
-          </div>
-        </button>
+       
+       
 
         <button type="button" class="delivery-btn delivery-schedule ml-2">
           <div class="d-flex align-items-center">

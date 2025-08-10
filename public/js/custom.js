@@ -114,7 +114,7 @@ $(document).on('click', '.addToCartBtn', function(e) {
 
                     // ✅ Update total price
                      let newTotal = response.total; // must be returned from backend
-                     $('.total-div .total-price').text('₹' + newTotal);
+                     $('.total-price').text('₹' + newTotal);
                        // Optionally, show a success message
                        $('#success-message').text(response.message);
                        $('#success-alert').removeClass('d-none');
