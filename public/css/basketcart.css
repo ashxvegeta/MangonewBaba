@@ -69,6 +69,134 @@
             text-decoration: none;
         }
 
+
+        /* Sticky cart footer wrapper */
+.cart-footer {
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  pointer-events: auto;
+}
+
+/* inner container with rounded top */
+.cart-footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -4px 18px rgba(0,0,0,0.15);
+  font-family: inherit;
+}
+
+/* TOP BAR: grey */
+.cf-top {
+  background: #4b4b4b; /* dark grey like your screenshot's top strip */
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 16px;
+  align-items: center;
+}
+
+/* Subtotal style */
+.cf-subtotal-amt {
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+/* green savings badge */
+.badge-savings {
+  background: #2db34a; /* vivid green */
+  color: #072b09;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* BOTTOM DARK SECTION */
+.cf-bottom {
+  background: #0b0b0b; /* deep black/very dark */
+  color: #fff;
+  padding: 14px 18px;
+  align-items: center;
+}
+
+/* Delivery buttons container */
+.delivery-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Delivery button base */
+.delivery-btn {
+  background: #ffffff; /* default white */
+  color: #111;
+  border-radius: 8px;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  text-align: left;
+  box-shadow: none;
+}
+
+/* primary (active) button — light green fill) */
+.delivery-now.active {
+  background: #def7db;   /* pale green */
+  border-color: #bfeabf;
+  color: #176b2b;
+}
+
+/* Secondary (outlined) style */
+.delivery-schedule {
+  background: #fff;
+  color: #111;
+  border: 1px solid #e6e6e6;
+}
+
+/* small text style */
+.delivery-btn .text-muted {
+  color: #6c757d !important;
+}
+
+/* Proceed button */
+.btn-proceed {
+  background: #d21616;
+  border-color: #b51212;
+  color: #fff;
+  padding: 10px 34px;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(210,21,21,0.18);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 767.98px) {
+  .cart-footer-inner { padding: 0; }
+  .cf-top { font-size: 15px; padding: 8px 12px; }
+  .cf-bottom { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+  .delivery-wrap { justify-content: space-between; }
+  .delivery-btn { min-width: 0; flex: 1 1 auto; }
+  .delivery-btn + .delivery-btn { margin-left: 8px; }
+  .ml-auto { margin-left: 0 !important; }
+
+  .btn-proceed {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* make the top subtotal/savings stack nicely */
+  .cf-top { display: flex; flex-direction: row; justify-content: space-between; }
+}
+
+/* smaller phones */
+@media (max-width: 480px) {
+  body { padding-bottom: 160px; } /* ensure larger footer doesn't hide content */
+  .delivery-btn div.fw-600 { font-size: 14px; }
+  .delivery-btn small { font-size: 12px; }
+  .cf-subtotal { font-size: 15px; }
+}
+
         /* Hide only for mobile devices (phones) */
         @media (max-width: 480px) {
             .quantity-div {

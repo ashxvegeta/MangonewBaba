@@ -87,28 +87,56 @@
 
         @endforeach
 
-        <div class="container bg-dark text-white py-2 fixed-bottom">
-    <div class="row align-items-center">
-        <!-- Subtotal & Savings -->
-        <div class="col-md-4 col-12 mb-2 mb-md-0 text-center text-md-start">
-            <span class="bg-secondary px-2 py-1 rounded me-2 d-inline-block">
-                Subtotal: <strong>₹641.84</strong>
-            </span>
-            <span class="bg-success text-dark px-2 py-1 rounded">
-                Savings: <strong>₹149.16</strong>
-            </span>
-        </div>
-
-      
-
-        <!-- Checkout Button -->
-        <div class="col-md-4 col-12 text-center text-md-end">
-            <button class="btn btn-danger btn-lg">
-                Proceed to Checkout
-            </button>
-        </div>
+        <!-- Sticky Cart Footer -->
+<div class="cart-footer fixed-bottom">
+  <div class="cart-footer-inner container">
+    <!-- TOP: Subtotal & Savings -->
+    <div class="cf-top d-flex align-items-center justify-content-between">
+      <div class="cf-subtotal">
+        Subtotal: <span class="cf-subtotal-amt">₹{{ $subtotal ?? '0.00' }}</span>
+      </div>
+      <div class="cf-savings">
+        <span class="badge badge-savings">Savings: ₹{{ $savings ?? '0.00' }}</span>
+      </div>
     </div>
+
+    <!-- BOTTOM: Delivery options (left) + Proceed button (right) -->
+    <div class="cf-bottom d-flex align-items-center">
+      <div class="delivery-wrap d-flex flex-wrap">
+        <button type="button" class="delivery-btn delivery-now active">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-bolt fa-lg mr-2"></i>
+            <div class="text-left">
+              <div class="fw-600">Get it now</div>
+              <small class="d-block text-muted">9 mins</small>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" class="delivery-btn delivery-schedule ml-2">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-clock-o fa-lg mr-2"></i>
+            <div class="text-left">
+              <div class="fw-600">Schedule delivery</div>
+              <small class="d-block text-muted">Get it in 2 hrs</small>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="ml-auto">
+        <button class="btn btn-proceed btn-lg">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- IMPORTANT: add bottom padding to page content so footer doesn't cover page content -->
+<style>
+  /* quick inline fallback — move to your CSS file instead */
+  body { padding-bottom: 120px; } /* ensure content not hidden behind footer */
+</style>
+
     </div>
 </div>
 
