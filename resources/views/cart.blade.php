@@ -24,9 +24,6 @@
     </button>
 </div>
 
-
-
-
 <div class="container p-4">
     <div class="row fw-bold py-2  mb-2 delivery-div">
         <div class="col-6 fw-bold">Delivery </div>
@@ -41,6 +38,9 @@
         <div class="col-md-3 text-right">Sub-total</div>
     </div>
 
+    @php
+        $total = 0;    
+    @endphp
     @foreach($cartItems as $item)
     <div class="cart-item mt-2 product-data">
         <div class="row align-items-center">
@@ -65,9 +65,9 @@
             <!-- Quantity -->
             <div class="col-md-3 col-6 text-center mt-3 mt-md-0">
                 <div class="quantity-control mx-auto">
-                    <button type="button" class="decrement-btn">−</button>
+                    <button type="button" class="decrement-btn change-quantity" data-action="decrement" data-id="{{ $item->prod_id }}">−</button>
                     <input type="text" value="{{ $item->prod_qty }}" readonly class="qty-input">
-                    <button type="button" class="increment-btn">+</button>
+                    <button type="button" class="increment-btn change-quantity" data-action="increment" data-id="{{ $item->prod_id }}">+</button>
                 </div>
                 <div class="actions mt-2">
                     <a href="" class="text-danger me-2 delete-cart-item" data-id="{{ $item->prod_id }}">Delete</a> |
@@ -77,13 +77,43 @@
 
             <!-- Sub-total -->
             <div class="col-md-3 col-6 text-right mt-3 mt-md-0">
-                <span class="price">₹{{ $item->product->selling_price * $item->prod_qty }} </span>
+                <span class="item-subtotal">₹{{ $item->product->selling_price * $item->prod_qty }} </span>
             </div>
         </div>
     </div>
+      @php
+        $total += $item->product->selling_price * $item->prod_qty;
+      @endphp
 
         @endforeach
-        
+
+        <div class="container bg-dark text-white py-2 fixed-bottom">
+    <div class="row align-items-center">
+        <!-- Subtotal & Savings -->
+        <div class="col-md-4 col-12 mb-2 mb-md-0 text-center text-md-start">
+            <span class="bg-secondary px-2 py-1 rounded me-2 d-inline-block">
+                Subtotal: <strong>₹641.84</strong>
+            </span>
+            <span class="bg-success text-dark px-2 py-1 rounded">
+                Savings: <strong>₹149.16</strong>
+            </span>
+        </div>
+
+      
+
+        <!-- Checkout Button -->
+        <div class="col-md-4 col-12 text-center text-md-end">
+            <button class="btn btn-danger btn-lg">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+
+
 @endsection
 
 

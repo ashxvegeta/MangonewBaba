@@ -53,4 +53,34 @@ class CartController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Cart item not found.']);
         }
     }
+
+    public function updateCartItem(Request $request)
+    {
+        // Validate the request
+        $prod_id = $request->input('prod_id');
+        $quantity = $request->input('prod_qty');
+        $userId = session('user')->id;
+        // Find the cart item
+        $cartItem = Cart::where('user_id', $userId)->where('prod_id', $prod_id)->first();
+
+        if ($cartItem) {
+            // Update the quantity
+            $cartItem->prod_qty = $quantity;
+            $cartItem->save();
+            // Calculate new subtotal for this perticular product 
+            $subtotal = $cartItem->product->selling_price * $cartItem->prod_qty;
+            // Calculate new total for all items in cart
+            $total = Cart::where('user_id', $userId)
+            ->get()
+            ->sum(fn($item) => $item->product->selling_price * $item->prod_qty);
+            return response()->json([
+            'status' => 'success',
+            'message' => 'Cart item updated successfully!',
+            'subtotal' => $subtotal,
+            'total' => $total
+        ]);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Cart item not found.']);
+        }
+    }
 }

@@ -93,4 +93,43 @@ $(document).on('click', '.addToCartBtn', function(e) {
                }
            });
        });
+
+       $('.change-quantity').on('click', function() {
+           var $btn = $(this);
+           var prod_id = $(this).data('id');
+           var qtyInput = $(this).siblings('.qty-input').val();
+           $.ajax({
+               method: "POST",
+               url: "/update-cart",
+               data: {
+                   prod_id: prod_id,
+                   prod_qty: qtyInput,
+                   _token: $('meta[name="csrf-token"]').attr('content')
+               },
+               success: function(response) {
+                   if (response.status === 'success') {
+                    //update the price of particular item
+                   let newSubtotal = response.subtotal; // must be returned from backend
+                    $btn.closest('.cart-item').find('.item-subtotal').text('₹' + newSubtotal);
+
+                    // ✅ Update total price
+                     let newTotal = response.total; // must be returned from backend
+                     $('.total-div .total-price').text('₹' + newTotal);
+                       // Optionally, show a success message
+                       $('#success-message').text(response.message);
+                       $('#success-alert').removeClass('d-none');
+                       setTimeout(function() {
+                           $('#success-alert').addClass('d-none');
+                       }, 3000);
+                   }
+               },
+               error: function(xhr) {
+                   if (xhr.status === 401) {
+                       window.location.href = '/signin';
+                   } else {
+                       alert('An error occurred. Please try again.');
+                   }
+               }
+           });
+       });
     });
