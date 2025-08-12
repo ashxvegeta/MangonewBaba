@@ -52,7 +52,7 @@
                     <div class="product-card border rounded">
                         <div class="position-relative">
                             <span class="discount-badge">35% OFF</span>
-                            <a href="{{ route('product.details') }}">
+                            <a href="{{ url('category/'.$product->category->slug.'/'.$product->slug) }}">
                                 <img src="{{ asset('images/products/' . $product->image) }}" alt="Banana" class="w-100">
                             </a>
                         </div>

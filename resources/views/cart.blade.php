@@ -123,7 +123,7 @@
       </div>
 
       <div class="ml-auto">
-        <button class="btn btn-proceed btn-lg">Proceed to Checkout</button>
+        <a href="{{ route('checkout') }}" class="btn btn-proceed btn-lg">Proceed to Checkout</a>
       </div>
     </div>
   </div>

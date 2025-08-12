@@ -15,7 +15,7 @@
 <!-- <div class="container-fluid"> -->
 
 
-<@include('user.header')
+@include('user.header')
 @include('user.navbar')
 
 <!-- Carousel -->

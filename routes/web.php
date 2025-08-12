@@ -46,6 +46,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/basketcart', [CartController::class, 'viewCart'])->name('view_cart');
     Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
     Route::post('/update-cart', [CartController::class, 'updateCartItem'])->name('update-cart');
+    Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
