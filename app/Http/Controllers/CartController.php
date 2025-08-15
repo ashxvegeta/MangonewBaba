@@ -92,27 +92,5 @@ class CartController extends Controller
     }
 
 
-    public function checkout(Request $request)
-{
-    // Get the authenticated user
-    $user = $request->session()->get('user');
 
-    // Check if the user is authenticated
-    if (!$user) {
-        return redirect()->route('signin');
-    }
-
-    // Get the cart items for the user
-    $cartItems = Cart::where('user_id', $user->id)->get();
-
-    // Check if the cart is empty
-    if ($cartItems->isEmpty()) {
-        return redirect()->route('view_cart')->with('error', 'Your cart is empty.');
-    }
-
-    // Calculate the total amount
-    $total = $cartItems->sum(fn($item) => $item->product->selling_price * $item->prod_qty);
-
-    return view('checkout', compact('cartItems', 'total'));
-}
 }
