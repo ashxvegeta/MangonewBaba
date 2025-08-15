@@ -95,7 +95,15 @@
                             <!-- <span class="price_weight">(&#8377; 0.06 / g)</span> -->
                         </div>
                         <div class="text-success fw-bold"> You Save: {{ round((($product->original_price - $product->selling_price) / $product->original_price) * 100) }}% OFF</div>
-                        <small class="text-white badge badge-success">{{ $product->qty>0 ? 'In Stock' : 'Out of Stock' }}</small>
+                      
+                       @if($product->qty > 0)
+                            <small class="text-white badge badge-success">{{ 'In Stock' }}</small>
+                        @else
+                            <small class="text-white badge badge-danger">{{ 'Out of Stock' }}</small>
+                        @endif
+                     
+                        
+                        
                         <div class="text-muted">( Inclusive of all taxes )</div>
 
                         <input type="text" class="prod_id" value="{{ $product->id }}" hidden>
@@ -164,9 +172,11 @@
                     </div>
 
                     <div class="d-flex flex-column flex-md-row button-group">
+                    @if($product->qty > 0)
                     <button class="btn btn-danger addToCartBtn flex-grow-1 py-3 mb-3 mb-md-0 mr-md-3">
                     <i class="fas fa-shopping-basket mr-2"></i>Add to basket
                     </button>
+                    @endif
                     <button class="btn btn-outline-secondary flex-grow-1 py-3">
                     <i class="fas fa-bookmark mr-2"></i>Save for later
                     </button>

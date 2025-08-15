@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @extends('layouts.master')
-@section('title', 'Basket Cart')
+@section('title', 'Checkout')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 @endpush
@@ -13,7 +13,8 @@
 <body>
 <!-- Header -->
 <div class="checkout-header">
-    <img src="https://www.bbassets.com/static/v2596/custPage/build/content/img/bb_logo.png" alt="BigBasket">
+    <a href="{{ url('/') }}"><img src="http://mangobaba.in/img/applogouu.png" alt="BigBasket"></a>
+
     <div class="checkout-steps">
         <span>Delivery Address</span>
         <span>Delivery Options</span>
