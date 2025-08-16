@@ -26,7 +26,12 @@ class CartController extends Controller
             ['user_id' => $user->id, 'prod_id' => $productId],
             ['prod_qty' => $quantity]
         );
-        return response()->json(['status' => 'success', 'message' => 'An item has been added to cart successfully!']);
+        $cartcount = Cart::where('user_id',session('user')->id)->get()->count();
+        return response()->json([
+        'status' => 'success',
+        'message' => 'An item has been added to cart successfully!',
+        'cart_count' => $cartcount
+    ]);
     }
 
     public function viewCart(Request $request)
@@ -48,7 +53,8 @@ class CartController extends Controller
         if ($cartItem) {
             // Delete the cart item
             $cartItem->delete();
-            return response()->json(['status' => 'success', 'message' => 'Cart item deleted successfully!']);
+            $cartcount = Cart::where('user_id',session('user')->id)->get()->count();
+            return response()->json(['status' => 'success', 'message' => 'Cart item deleted successfully!', 'cart_count' => $cartcount]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Cart item not found.']);
         }
@@ -91,6 +97,11 @@ class CartController extends Controller
         }
     }
 
+
+    static function countcartproduct(){
+    $userId = session('user')->id;
+    return Cart::where('user_id',$userId)->count();
+    }
 
 
 }

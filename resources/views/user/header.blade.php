@@ -16,11 +16,19 @@
             <div>
                 <button class="login-signup-btn">Login/Sign Up</button>
             </div>
+                @php
+                use App\Http\Controllers\CartController;
+                $total = 0;
+                if(Session::has('user')){
+                $cartCount =  CartController::countcartproduct();
+                }
+                @endphp
 
             <!-- Add to Cart Icon -->
             <div class="addtocartlogo px-2">
                 <a href="{{ route('view_cart') }}" class="addtocart-btn">
                     <i class="fa fa-shopping-cart"></i>
+                    <span class="cart-count-badge text-success">{{ $cartCount ?? '' }}</span>
                 </a>
             </div>
         </div>

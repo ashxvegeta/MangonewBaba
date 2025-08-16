@@ -15,6 +15,7 @@ $(document).on('click', '.addToCartBtn', function(e) {
             if (response.status === 'success') {
                $('#success-message').text(response.message);
                 $('#success-alert').removeClass('d-none'); // Show the alert
+               $('.cart-count-badge').text(response.cart_count);
                 // Optionally hide the alert after a few seconds
                 setTimeout(function() {
                     $('#success-alert').addClass('d-none');
@@ -76,6 +77,7 @@ $(document).on('click', '.addToCartBtn', function(e) {
                        let count = $('.product-count').text();
                        count = parseInt(count) - 1;
                        $('.product-count').text(count);
+                       $('.cart-count-badge').text(response.cart_count);
                        // Optionally, show a success message
                        $('#success-message').text(response.message);
                        $('#success-alert').removeClass('d-none');
