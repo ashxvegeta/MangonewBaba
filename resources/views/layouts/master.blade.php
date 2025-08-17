@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/product_main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/filter_product_list.css') }}">
 
-
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xzoom/1.0.14/xzoom.min.css">
     @stack('styles')
 </head>
@@ -36,6 +36,16 @@
     <script src="{{ asset('js/product_main.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     @stack('scripts')
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#3085d6'
+        });
+    </script>
+    @endif
 </body>
 
 </html>

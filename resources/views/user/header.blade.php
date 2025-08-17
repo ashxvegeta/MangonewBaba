@@ -28,7 +28,7 @@
             <div class="addtocartlogo px-2">
                 <a href="{{ route('view_cart') }}" class="addtocart-btn">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="cart-count-badge text-success">{{ $cartCount ?? '' }}</span>
+                    <span class="cart-count-badge text-success">{{ $cartCount > 0 ? $cartCount : '' }}</span>
                 </a>
             </div>
         </div>

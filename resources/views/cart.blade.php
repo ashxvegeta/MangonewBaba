@@ -25,6 +25,7 @@
 </div>
 
 <div class="container p-4">
+  @if($cartItems->count() > 0)
     <div class="row fw-bold py-2  mb-2 delivery-div">
         <div class="col-6 fw-bold">Delivery </div>
         <div class="col-6 text-right fw-bold"><span class="product-count">{{ $cartItems->count() }}</span>&nbspProducts</div>
@@ -37,6 +38,12 @@
         <div class="col-md-3 text-center">Quantity</div>
         <div class="col-md-3 text-right">Sub-total</div>
     </div>
+    @else
+    <div class="row">
+      <div class="col-12 text-center mt-5" style="color: #072b09;
+    font-weight: 700;">Your cart is empty.</div>
+    </div>
+    @endif
 
     @php
         $total = 0;    
@@ -103,6 +110,7 @@
         @endforeach
 
         <!-- Sticky Cart Footer -->
+    @if($cartItems->count() > 0)     
 <div class="cart-footer fixed-bottom container">
   <div class="cart-footer-inner">
     <!-- TOP: Subtotal & Savings -->
@@ -138,6 +146,7 @@
     </div>
   </div>
 </div>
+@endif
 
 <!-- IMPORTANT: add bottom padding to page content so footer doesn't cover page content -->
 <style>

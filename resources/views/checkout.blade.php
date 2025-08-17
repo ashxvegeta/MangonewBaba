@@ -29,16 +29,16 @@
         <h3><i class="fas fa-shopping-basket me-2 text-warning"></i> Order Confirmation</h3>
 
         <!-- Form -->
-        <form>
-
+        <form action="{{ route('checkout.placeOrder') }}" method="POST" class="checkout-form">
+            @csrf
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" value="{{ session('user')->name ?? '' }}">
 
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" value="{{ session('user')->email ?? '' }}">
 
-            <label for="contact">Contact Number</label>
-            <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" value="{{ session('user')->phone ?? '' }}">
+            <label for="phone">Contact Number</label>
+            <input type="phone" id="phone" name="phone" placeholder="Enter your phone number" value="{{ session('user')->phone ?? '' }}">
 
             <label for="address">Delivery Address</label>
             <textarea id="address" name="address" rows="3" placeholder="Enter your delivery address">{{ session('user')->address ?? '' }}</textarea>
