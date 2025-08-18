@@ -27,6 +27,10 @@ Route::get('/no-access', function () {
 });
 Route::post('/register', [UserController::class, 'Register'])->name('register');
 Route::post('/login', [UserController::class, 'Login'])->name('login');
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect()->route('signin');
+})->name('logout');
 // Route::get('admin/home', [AdminController::class, 'AdminDashboard']) ->middleware('admin')->name('admin.home');
 Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/home', [AdminController::class, 'AdminDashboard'])->name('admin.home');

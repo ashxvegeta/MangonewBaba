@@ -14,7 +14,11 @@
 
             <!-- Login/Signup Buttons -->
             <div>
+                @if(!session('user'))
                 <button class="login-signup-btn">Login/Sign Up</button>
+               @else
+               <button class="login-signup-btn"><a class="text-white" href="{{ route('logout') }}">Logout</a></button>
+                @endif
             </div>
                 @php
                 use App\Http\Controllers\CartController;
@@ -28,7 +32,7 @@
             <div class="addtocartlogo px-2">
                 <a href="{{ route('view_cart') }}" class="addtocart-btn">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="cart-count-badge text-success">{{ $cartCount > 0 ? $cartCount : '' }}</span>
+                    <span class="cart-count-badge text-success">@if( session('user') && $cartCount > 0) {{ $cartCount }} @endif</span>
                 </a>
             </div>
         </div>
