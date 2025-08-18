@@ -47,7 +47,14 @@ class CheckoutController extends Controller
         $order->state = $request->input('state');
         $order->status = 0; // Default status
         $order->message = $request->input('message');
-        $order->tracking_no = rand(100000, 999999);
+        $total = 0;
+        $cartItemsTotal = Cart::where('user_id', session('user')->id)->get();
+        foreach ($cartItemsTotal as $prod) {
+            $total += $prod->product ? $prod->product->selling_price * $prod->prod_qty : 0;
+        }
+        $order->total_price = $total;
+        $userName = preg_replace('/\s+/', '', strtolower(session('user')->name));
+        $order->tracking_no = $userName . rand(100000, 999999);
         $order->save();
 
         $cartItems = Cart::where('user_id', session('user')->id)->get();
