@@ -518,7 +518,7 @@
 }
 
 /* Badges */
-.badge {
+.stock-label {
     float: right;
     padding: 4px 8px;
     border-radius: 12px;
@@ -526,10 +526,13 @@
     font-weight: bold;
     color: white;
 }
-.badge.red {
+
+.stock-label.red {
     background: red;
 }
-.badge.green {
+
+.stock-label.green {
     background: green;
 }
+
         
