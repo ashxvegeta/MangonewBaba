@@ -139,3 +139,17 @@ $(document).on('click', '.addToCartBtn', function(e) {
            });
        });
     });
+
+    document.getElementById("profileBtn").onclick = function() {
+    document.getElementById("sidebarMenu").style.width = "250px";
+}
+
+// Close sidebar
+document.getElementById("closeSidebar").onclick = function() {
+    document.getElementById("sidebarMenu").style.width = "0";
+}
+
+document.getElementById("profileDropdown").addEventListener("click", function(e) {
+    e.preventDefault(); // prevent page reload
+    document.querySelector(".sidebar").classList.toggle("active"); 
+});

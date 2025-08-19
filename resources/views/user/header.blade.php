@@ -12,6 +12,21 @@
                 <div id="search-results"></div>
             </div>
 
+            <div class="profile mr-2 bg-secondary" style="border-radius: 50px; cursor: pointer;" id="profileBtn">
+    <i class="fa fa-solid fa-user text-white p-2"></i>
+</div>
+
+
+<div id="sidebarMenu" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
+    <a href="#">My Account</a>
+    <a href="#">My Basket <span class="badge red">3 items</span></a>
+    <a href="#">My Orders</a>
+    <a href="#">My Smart Basket</a>
+    <a href="#">My Wallet <span class="badge green">₹0</span></a>
+    <a href="#">Contact Us</a>
+    <a href="#">Logout</a>
+</div>
             <!-- Login/Signup Buttons -->
             <div>
                 @if(!session('user'))

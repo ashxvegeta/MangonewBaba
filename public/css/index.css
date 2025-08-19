@@ -464,4 +464,72 @@
         font-size: 0.9rem;
     }
 }
+
+@media (max-width: 1024px) {
+  .profile {
+    display: none !important;
+  }
+}
+
+.sidebar {
+    width: 0;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.sidebar.active {
+    width: 250px; /* or whatever size */
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #1c1c1c;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 9999;
+}
+
+.sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: #333;
+}
+
+/* Close button */
+.sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Badges */
+.badge {
+    float: right;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+.badge.red {
+    background: red;
+}
+.badge.green {
+    background: green;
+}
         
