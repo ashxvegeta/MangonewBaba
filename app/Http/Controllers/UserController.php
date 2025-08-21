@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Order;
 
 class UserController extends Controller
 {
@@ -62,5 +63,11 @@ class UserController extends Controller
         }else{
             return redirect()->route('admin.home');
         }
+    }
+
+    public function userOrders(Request $request)
+    {
+        $orders = Order::where('user_id', session('user')->id)->get();
+        return view('user.orders', compact('orders'));
     }
 }

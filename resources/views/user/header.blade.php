@@ -21,7 +21,7 @@
     <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
     <a href="#">My Account</a>
     <a href="#">My Basket <span class="stock-label red">3 items</span></a>
-    <a href="#">My Orders</a>
+    <a href="{{ route('user.orders') }}">My Orders</a>
     <a href="#">My Smart Basket</a>
     <a href="#">My Wallet <span class="stock-label green">₹0</span></a>
     <a href="#">Contact Us</a>

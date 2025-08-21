@@ -45,8 +45,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/store-admin-product', [ProductController::class, 'AdminStoreProduct'])->name('product.store');
     Route::get('products/{id}/delete', [ProductController::class, 'AdminProductdestroy'])->name('products.delete');
     Route::get('products/{id}/edit', [ProductController::class, 'AdmineditProduct'])->name('products.edit');
-
-     Route::get('/view-admin-orders', [AdminController::class, 'AdminviewOrders'])->name('view-admin-orders');
+    Route::get('/view-admin-orders', [AdminController::class, 'AdminviewOrders'])->name('view-admin-orders');
 });
 Route::middleware(['user'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
@@ -55,6 +54,7 @@ Route::middleware(['user'])->group(function () {
     Route::post('/update-cart', [CartController::class, 'updateCartItem'])->name('update-cart');
     Route::get('/checkout', [CheckoutController::class, 'Checkout'])->name('checkout');
     Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
+    Route::get('/my-orders', [UserController::class, 'userOrders'])->name('user.orders');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
