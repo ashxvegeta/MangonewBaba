@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
 Route::get('/view-category/{slug}', [FrontendController::class, 'ViewCategory'])->name('view-category');
@@ -55,6 +56,8 @@ Route::middleware(['user'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'Checkout'])->name('checkout');
     Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
     Route::get('/my-orders', [UserController::class, 'userOrders'])->name('user.orders');
+    Route::get('/orders/fetch', [UserController::class, 'fetchOrders'])->name('orders.fetch');
+    Route::get('/order/details/{id}', [UserController::class, 'orderDetails'])->name('order.details');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');

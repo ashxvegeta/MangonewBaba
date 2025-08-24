@@ -137,7 +137,7 @@
     }
 
     .order-price-status .delivered {
-      display: flex;
+      /* display: flex; */
       align-items: center;
       color: green;
       font-size: 13px;
@@ -235,20 +235,22 @@
       <!-- Order Card Example -->
   
 
-    
 
+      @foreach ($orders as $order)
       <div class="order-card">
-        <img src="https://mangobaba.in/product_images/1747645043.png" alt="Product Image">
+        <img src="{{ asset('images/products/' . $order->orderItems->first()->product->image) }}" alt="Product Image">
         <div class="order-info">
-          <h4>Minutes Basket - 1 Items</h4>
-          <p>1 Delivered</p>
+          <h4>{{ $order->orderItems->first()->product->name ?? 'Unknown Product' }} - {{ $order->orderItems->count() }} Items</h4>
+          <p>Order id: {{ $order->id }}</p>
+          <small><a href="{{ route('order.details', $order->id) }}">Order Details</a></small>
         </div>
         <div class="order-price-status">
-          <div class="price">₹360 + ⚡8</div>
-          <div class="delivered">Delivered on Jul 23</div>
-          <p>Your item has been delivered</p>
+          <div class="price">₹{{ $order->total_price }} </div>
+          <div class="delivered">Ordered on {{ $order->created_at->format('d M Y') }}  </div>
+          <p>@if($order->status == 0) Order in process @else Your item has been delivered @endif</p>
         </div>
       </div>
+      @endforeach
 
     </div>
   </div>
