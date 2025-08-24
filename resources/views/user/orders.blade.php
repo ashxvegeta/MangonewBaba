@@ -200,7 +200,7 @@
 @include('user.navbar')
 
 <div class="container p-3">
-    <a href="#">Home</a> &gt; <a href="#">My Account</a> &gt; My Orders
+    <a href="#">Home</a> &gt; <a href="#">My Account</a> &gt; My Orderss
   </div>
 
   <div class="container content-container">
