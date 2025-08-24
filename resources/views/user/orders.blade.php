@@ -242,7 +242,7 @@
         <div class="order-info">
           <h4>{{ $order->orderItems->first()->product->name ?? 'Unknown Product' }} - {{ $order->orderItems->count() }} Items</h4>
           <p>Order id: {{ $order->id }}</p>
-          <small><a href="{{ route('order.details', $order->id) }}">Order Details</a></small>
+          <small><a style="text-decoration: none;" href="{{ route('order.details', $order->id) }}">Order Details</a></small>
         </div>
         <div class="order-price-status">
           <div class="price">₹{{ $order->total_price }} </div>
