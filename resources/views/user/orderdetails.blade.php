@@ -20,57 +20,45 @@
 
 <div class="order-details-container mt-4">
 
-  <!-- Order Header -->
   <div class="order-header">
-    <h2>Order ID: #OD431115829671049200</h2>
-    <span class="order-status">Delivered on Apr 29, 2024</span>
+    <h2>Order ID: #OD{{ $order->id }}</h2>
+    <span class="order-status">
+      @if($order->status == 0) In Process
+      @else Delivered on {{ $order->created_at->format('d M Y') }}
+      @endif
+    </span>
   </div>
 
-  <!-- Products -->
-  <div class="section">
-    <h3>Items in this order</h3>
-    <div class="order-products">
-      <div class="order-product">
-        <img src="https://mangobaba.in/product_images/1747645043.png" alt="Product Image">
-        <div class="product-info">
-          <h4>Kilos Basket</h4>
-          <p>Qty: 2</p>
-          <p>₹720</p>
-        </div>
-      </div>
-      <div class="order-product">
-        <img src="https://mangobaba.in/product_images/1747645043.png" alt="Product Image">
-        <div class="product-info">
-          <h4>Minutes Basket</h4>
-          <p>Qty: 1</p>
-          <p>₹360</p>
-        </div>
-      </div>
-    </div>
+  {{-- Show Products inside this order --}}
+  <div class="order-products">
+      @foreach ($order->orderItems as $item)
+          <div class="order-product">
+              <img src="{{ asset('images/products/'.$item->product->image) }}" 
+                   alt="{{ $item->product->name }}" width="80">
+              <div>
+                  <h5>{{ $item->product->name }}</h5>
+                  <p>Quantity: {{ $item->qty }}</p>
+                  <p>Price: ₹{{ $item->price }}</p>
+              </div>
+          </div>
+      @endforeach
   </div>
 
-  <!-- Delivery Details -->
   <div class="section">
     <h3>Delivery Address</h3>
-    <p>Ashish Kumar Yadav</p>
-    <p>356/340/1134 Ashok Nagar, Lucknow</p>
-    <p>Phone: 82995792</p>
+    <p>{{ $order->name }}</p>
+    <p>{{ $order->address }}, {{ $order->city }}, {{ $order->state }}</p>
+    <p>Phone: {{ $order->phone }}</p>
   </div>
 
-  <!-- Price Details -->
-  <div class="section price-details">
-    <h3>Price Details</h3>
-    <table>
-      <tr><td>List Price</td><td>₹1959</td></tr>
-      <tr><td>Selling Price</td><td>₹1640</td></tr>
-      <tr><td>Handling Fee</td><td>₹9</td></tr>
-      <tr><td>Promotion Discount</td><td>- ₹144</td></tr>
-      <tr class="total"><td>Total Amount</td><td>₹1505</td></tr>
-    </table>
-    <p>Payment Mode: Flipkart UPI</p>
+  <div class="section">
+    <h3>Order Summary</h3>
+    <p>Total Items: {{ $order->orderItems->count() }}</p>
+    <p>Total Price: ₹{{ $order->total_price }}</p>
   </div>
 
 </div>
+
 
 
 

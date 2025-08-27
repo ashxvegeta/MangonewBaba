@@ -74,9 +74,12 @@ class UserController extends Controller
     }
 
     public function orderDetails($id)
-    {
-        
-        $order = Order::with('orderItems.product')->findOrFail($id);
-        return view('user.orderdetails', compact('order'));
-    }
+{
+    $order = Order::with('orderItems.product') // eager load items + products
+        ->where('user_id', session('user')->id)
+        ->findOrFail($id); // fetch only this order
+
+    return view('user.orderdetails', compact('order'));
+}
+
 }
