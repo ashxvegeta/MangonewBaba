@@ -2,143 +2,101 @@
 <html lang="en">
 <head>
     @include('admin.css')
-    <style>
+<style>
+    .order-card {
+        background: #1e1e2d; /* dark card */
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        padding: 20px;
+        color: #f5f5f5; /* light text */
+        margin-bottom: 20px;
+    }
 
-        .order-card {
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    padding: 20px;
-    color: #333; /* ensure text is visible */
-}
+    .order-card h4 {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+    }
 
-.order-card h4 {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #222; /* darker heading */
-}
+    .product-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: #2a2a3d; /* slightly lighter than card */
+        border-radius: 6px;
+        padding: 12px;
+        border: 1px solid #333;
+    }
 
-.product-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: #f9f9f9; /* light gray instead of pure white */
-    border-radius: 6px;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-}
+    .product-item img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid #444;
+    }
 
-.product-info h5 {
-    margin: 0 0 5px 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: #111; /* make product name visible */
-}
+    .product-info h5 {
+        margin: 0 0 5px 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffff;
+    }
 
-.product-info p {
-    margin: 2px 0;
-    font-size: 14px;
-    color: #555;
-}
+    .product-info p {
+        margin: 2px 0;
+        font-size: 13px;
+        color: #cfcfcf;
+    }
 
-.price-table th {
-    background: #f1f1f1;
-    color: #333;
-    font-weight: 600;
-}
+    .price-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-.price-table td {
-    color: #444;
-}
+    .price-table th, 
+    .price-table td {
+        padding: 8px;
+        font-size: 14px;
+        border-bottom: 1px solid #333;
+    }
 
-        .order-summary {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .order-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            padding: 20px;
-        }
-        .order-card h4 {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .order-card p {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-        .product-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .product-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #fafafa;
-            border-radius: 6px;
-            padding: 10px;
-            border: 1px solid #eee;
-        }
-        .product-item img {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-        .product-info h5 {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        .product-info p {
-            margin: 2px 0;
-            font-size: 13px;
-            color: #555;
-        }
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .price-table th, .price-table td {
-            padding: 8px;
-            font-size: 14px;
-            border-bottom: 1px solid #eee;
-        }
-        .price-table th {
-            background: #f7f7f7;
-        }
-        .total-row td {
-            font-weight: bold;
-            font-size: 15px;
-        }
-        .badge-status {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .badge-success {
-            background: #d4f6e3;
-            color: #1b7c3d;
-        }
-        .badge-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-    </style>
+    .price-table th {
+        background: #2a2a3d;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .price-table td {
+        color: #ddd;
+    }
+
+    .total-row td {
+        font-weight: bold;
+        font-size: 15px;
+        color: #fff;
+    }
+
+    /* Badges */
+    .badge-status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+    .badge-success {
+        background: rgba(40,167,69,0.2);
+        color: #28a745;
+    }
+    .badge-pending {
+        background: rgba(255,193,7,0.2);
+        color: #ffc107;
+    }
+</style>
+
 </head>
 
 <body>
