@@ -19,4 +19,9 @@ class AdminController extends Controller
         $orders = Order::where('status','0')->get(); // Fetch all non-completed orders
         return view('admin.admin_orders', compact('orders'));
     }
+
+    public function AdminOrderDetails($id) {
+        $order = Order::findOrFail($id);
+        return view('admin.order_details', compact('order'));
+    }
 }

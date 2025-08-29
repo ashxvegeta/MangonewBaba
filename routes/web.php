@@ -47,6 +47,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('products/{id}/delete', [ProductController::class, 'AdminProductdestroy'])->name('products.delete');
     Route::get('products/{id}/edit', [ProductController::class, 'AdmineditProduct'])->name('products.edit');
     Route::get('/view-admin-orders', [AdminController::class, 'AdminviewOrders'])->name('view-admin-orders');
+    Route::get('/admin-order-details/{id}', [AdminController::class, 'AdminOrderDetails'])->name('admin.order.details');
 });
 Route::middleware(['user'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
