@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AdminDashboardController;
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
@@ -48,6 +49,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('products/{id}/edit', [ProductController::class, 'AdmineditProduct'])->name('products.edit');
     Route::get('/view-admin-orders', [AdminController::class, 'AdminviewOrders'])->name('view-admin-orders');
     Route::get('/admin-order-details/{id}', [AdminController::class, 'AdminOrderDetails'])->name('admin.order.details');
+    Route::get('/view-admin-users', [AdminDashboardController::class, 'AdminviewUsers'])->name('view-admin-users');
+    
 });
 Route::middleware(['user'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
