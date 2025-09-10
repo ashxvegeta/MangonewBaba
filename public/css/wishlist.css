@@ -1,0 +1,45 @@
+.continue-shopping-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f6fbea; /* light green shade like your screenshot */
+    padding: 40px 20px;
+    border-radius: 8px;
+}
+
+.continue-shopping-section h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.continue-shopping-section span {
+    color: #4CAF50; /* green for Basket word */
+    font-weight: 600;
+}
+
+.continue-shopping-section img {
+    max-width: 150px;
+    height: auto;
+}
+
+.continue-shopping-section .btn {
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .continue-shopping-section {
+        padding: 20px 10px;
+    }
+
+    .continue-shopping-section h4 {
+        font-size: 1rem;
+    }
+
+    .continue-shopping-section img {
+        max-width: 120px;
+    }
+}

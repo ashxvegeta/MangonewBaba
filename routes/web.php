@@ -9,6 +9,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\WishlistController;
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
@@ -62,6 +63,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/my-orders', [UserController::class, 'userOrders'])->name('user.orders');
     Route::get('/orders/fetch', [UserController::class, 'fetchOrders'])->name('orders.fetch');
     Route::get('/order/details/{id}', [UserController::class, 'orderDetails'])->name('order.details');
+    Route::get('/add-to-wishlist', [WishlistController::class, 'addToWishlist'])->name('my.basket');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
