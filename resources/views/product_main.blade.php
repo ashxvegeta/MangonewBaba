@@ -177,7 +177,7 @@
                     <i class="fas fa-shopping-basket mr-2"></i>Add to basket
                     </button>
                     @endif
-                    <button class="btn btn-outline-secondary flex-grow-1 py-3">
+                    <button class="btn btn-outline-secondary flex-grow-1 py-3 wishlistBtn">
                     <i class="fas fa-bookmark mr-2"></i>Save for later
                     </button>
                     </div>

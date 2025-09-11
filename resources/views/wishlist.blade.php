@@ -146,8 +146,7 @@
     <div id="product-slider" class="overflow-hidden">
         <div class="d-flex min-w-full duration-300" style="transform: translateX(0%);"  id="sliderTrack">
             <ul class="d-flex justify-start p-0 m-0" style="list-style: none;">
-                <!-- Product Card 1-->
-                <!--  -->
+               
 
 
                 </li>
@@ -176,5 +175,5 @@
 
 @push('scripts')
 <script src="{{ asset('js/index.js') }}"></script>
-<!-- <script src="{{ asset('js/filter_product_list.js') }}"></script> -->
+<script src="{{ asset('js/filter_product_list.js') }}"></script>
 @endpush

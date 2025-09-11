@@ -4,83 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\cr;
 use Illuminate\Http\Request;
+use App\Models\Wishlist;
 
 class WishlistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function addToWishlist(Request $request)
     {
-        // Validate and add the product to the wishlist
+
+        
+        $user_id = session('user')['id'];
+         $product_id = $request->input('prod_id');
+
+        // Check if the item is already in the wishlist
+        $existingWishlistItem = Wishlist::where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->first();
+
+        if ($existingWishlistItem) {
+            return response()->json(['message' => 'Item already in wishlist'], 200);
+        }
+
+        // Add the item to the wishlist
+        $wishlistItem = new Wishlist();
+        $wishlistItem->user_id = $user_id;
+        $wishlistItem->product_id = $product_id;
+        $wishlistItem->save();
+
+        return response()->json(['status' => 'success', 'message' => 'Item added to wishlist'], 201);
+    }
+
+    public function mywishlist()
+    {
         return view('wishlist');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\cr  $cr
-     * @return \Illuminate\Http\Response
-     */
-    public function show(cr $cr)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\cr  $cr
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(cr $cr)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cr  $cr
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, cr $cr)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\cr  $cr
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(cr $cr)
-    {
-        //
-    }
+ 
 }

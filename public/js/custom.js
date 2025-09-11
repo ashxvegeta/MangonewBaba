@@ -153,3 +153,48 @@ document.getElementById("profileDropdown").addEventListener("click", function(e)
     e.preventDefault(); // prevent page reload
     document.querySelector(".sidebar").classList.toggle("active"); 
 });
+
+
+$(document).on('click', '.wishlistBtn', function(e) {
+    e.preventDefault();
+
+    var prod_id = $('.prod_id').val();
+    var qty = $('.qty-input').val();
+
+    $.ajax({
+        method: "POST",
+        url: "/add-to-wishlist",
+        data: {
+            prod_id: prod_id,
+            qty: qty,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            $('#success-message').text(response.message);
+            $('#success-alert').removeClass('d-none'); // Show the alert
+
+            // ✅ Hide alert after 3s for both success & error cases
+            setTimeout(function() {
+                $('#success-alert').addClass('d-none');
+            }, 3000);
+
+            // Optional: update wishlist count
+            // if (response.wishlist_count !== undefined) {
+            //     $('.wishlist-count-badge').text(response.wishlist_count);
+            // }
+        },
+        error: function(xhr) {
+            if (xhr.status === 401) {
+                window.location.href = '/signin';
+            } else {
+                $('#success-message').text('An error occurred. Please try again.');
+                $('#success-alert').removeClass('d-none');
+
+                setTimeout(function() {
+                    $('#success-alert').addClass('d-none');
+                }, 3000);
+            }
+        }
+    });
+});
+

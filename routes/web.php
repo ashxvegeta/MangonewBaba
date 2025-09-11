@@ -63,7 +63,8 @@ Route::middleware(['user'])->group(function () {
     Route::get('/my-orders', [UserController::class, 'userOrders'])->name('user.orders');
     Route::get('/orders/fetch', [UserController::class, 'fetchOrders'])->name('orders.fetch');
     Route::get('/order/details/{id}', [UserController::class, 'orderDetails'])->name('order.details');
-    Route::get('/add-to-wishlist', [WishlistController::class, 'addToWishlist'])->name('my.basket');
+    Route::get('/wishlist', [WishlistController::class, 'mywishlist'])->name('my.wishlist');
+    Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist'])->name('add-to-wishlist');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
