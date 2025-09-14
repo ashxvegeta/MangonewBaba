@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cr;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
+use App\Models\Product;
 
 class WishlistController extends Controller
 {
@@ -36,8 +37,16 @@ class WishlistController extends Controller
 
     public function mywishlist()
     {
-        return view('wishlist');
-    }
+        $user_id = session('user')['id'];
+
+    // Get wishlist items for the user
+    $wishlistItems = Wishlist::where('user_id', $user_id)->get();
+
+    // Fetch products details based on wishlist product_ids
+    $products = Product::whereIn('id', $wishlistItems->pluck('product_id'))->get();
+
+    return view('wishlist', compact('wishlistItems', 'products'));
+}
 
  
 }

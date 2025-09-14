@@ -96,8 +96,6 @@
 </div>
 
 
-    <!-- Product List -->
-<div class="wishlist" id="wishlist">
 <!-- product list section start here -->
 <div class="container my-5" style="background-color: rgb(247 247 247);padding-top: 5px;padding-bottom: 30px;">
     <!-- Product Section -->
@@ -145,15 +143,48 @@
     <!-- Product List -->
     <div id="product-slider" class="overflow-hidden">
         <div class="d-flex min-w-full duration-300" style="transform: translateX(0%);"  id="sliderTrack">
-            <ul class="d-flex justify-start p-0 m-0" style="list-style: none;">
-               
+           <ul class="d-flex justify-start p-0 m-0" style="list-style: none;">
+    @php
+        $minCount = 5; 
+        $count = $products->count();
+        $repeat = $count < $minCount ? ceil($minCount / $count) : 1;
+    @endphp
 
+    @for ($i = 0; $i < $repeat; $i++)
+        @foreach($products as $product)
+            <li class="px-2">
+                <div class="product-card border rounded">
+                    <div class="position-relative">
+                        <span class="discount-badge">35% OFF</span>
+                        <a href="{{ url('category/'.$product->category->slug.'/'.$product->slug) }}">
+                            <img src="{{ asset('images/products/' . $product->image) }}" 
+                                 alt="{{ $product->name }}" class="w-100">
+                        </a>
+                    </div>
+                    <div class="index-product-details p-2">
+                        <p class="product-title">{{ $product->name }}</p>
+                        <select class="form-control quantity-select">
+                            <option>1 kg</option>
+                            <option>2 kg</option>
+                        </select>
+                        <p class="product-price">
+                            ₹{{ $product->selling_price }}
+                            <span class="original-price">₹{{ $product->original_price }}</span>
+                        </p>
+                        <button class="btn btn-success btn-block add-to-cart">Add</button>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    @endfor
+</ul>
 
-                </li>
-            </ul>
         </div>
     </div>
 </div>
+
+
+
 
 
 
@@ -175,5 +206,5 @@
 
 @push('scripts')
 <script src="{{ asset('js/index.js') }}"></script>
-<script src="{{ asset('js/filter_product_list.js') }}"></script>
+<script src="{{ asset('js/wishlist_product_list.js') }}"></script>
 @endpush
