@@ -89,7 +89,7 @@
     <div class="empty-basket">
         <img src="{{ asset('images/basket.png') }}" alt="Empty Basket" class="img-fluid mb-3" style="max-width: 180px;height:100px;">
         <h4 class="mb-3">Let's fill the empty <span class="text-success">Basket</span></h4>
-        <a href="" class="btn btn-danger px-4 py-2 fw-bold">
+        <a href="/" class="btn btn-danger px-4 py-2 fw-bold">
             Continue Shopping
         </a>
     </div>

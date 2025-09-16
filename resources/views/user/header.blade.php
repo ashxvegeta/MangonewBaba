@@ -20,7 +20,12 @@
 <div id="sidebarMenu" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
     <a href="#">My Account</a>
-    <a href="{{ route('my.wishlist') }}">My Basket <span class="stock-label red">3 items</span></a>
+    @php
+    use App\Models\Wishlist;
+    $userId = session('user')->id;
+    $wishlistCount = Wishlist::where('user_id', $userId)->count();
+    @endphp
+    <a href="{{ route('my.wishlist') }}">My Basket <span class="stock-label red">{{ $wishlistCount }} items</span></a>
     <a href="{{ route('user.orders') }}">My Orders</a>
     <a href="#">My Smart Basket</a>
     <a href="#">My Wallet <span class="stock-label green">₹0</span></a>
