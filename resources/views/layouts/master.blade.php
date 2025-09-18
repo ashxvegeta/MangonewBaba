@@ -35,6 +35,7 @@
     <script src="{{ asset('js/index.js') }}"></script>
     <script src="{{ asset('js/product_main.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/checkout.js') }}"></script>
     @stack('scripts')
     @if(session('success'))
     <script>
