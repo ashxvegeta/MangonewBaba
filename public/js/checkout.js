@@ -58,11 +58,37 @@ $(document).ready(function() {
             $('#state_error').html('');
         }
 
-       if(name != '' && email != '' && phone != '' && address != '' && city != '' && state != ''){
-    alert('Proceeding to payment gateway');
-}else{
-    return false; // stop payment flow if any field is empty
-}
-    
-    });
+         if(name != '' && email != '' && phone != '' && address != '' && city != '' && state != ''){
+           var data = {
+               'name': name,
+               'email': email,
+               'phone': phone,
+               'address': address,
+               'city': city,
+               'state': state
+           };
+             $.ajax({
+                   method: "POST",
+                     url: "/proceed-to-pay",
+                     data: data,
+                     success: function (response) {
+                        alert(response.total_price);
+                        // var options = {
+                        //       "key": "rzp_test_1DP5mmOlF5G5ag", // Enter the Key ID generated from the Dashboard
+                        //       "amount": response.total_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 100 refers to 100 paise
+                        //       "currency": "INR",
+                        //       "name": "E-commerce",
+                        //       "description": "Test Transaction",
+                        //       "image": "https://example.com/your_logo",
+                        //       "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                        //       "handler": function (responsea){
+                        //           // alert(responsea.razorpay_payment_id);
+                        //       }
+                        //   };
+                        //   var rzp1 = new Razorpay(options);
+                        //   rzp1.open();
+                      }
+                  });
+              }
+          });
 });

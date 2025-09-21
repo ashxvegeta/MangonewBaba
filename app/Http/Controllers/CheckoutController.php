@@ -92,6 +92,37 @@ class CheckoutController extends Controller
         Cart::destroy($cartItems);
         return redirect('/')->with('success', 'Order placed successfully!');
         // Validate and process the order
-    }               
+    }    
+    
+    
+    public function razorPay(Request $request)
+    {
+       $cartItems = Cart::where('user_id', session('user')->id)->get();
+       if ($cartItems->isEmpty()) {
+           return response()->json(['status' => 'error', 'message' => 'Your cart is empty. Please add items to your cart before proceeding to checkout.']);
+       }
+       $totalprice = 0;
+         foreach ($cartItems as $item) {
+            $totalprice += $item->product ? $item->product->selling_price * $item->prod_qty : 0;
+         }
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $city = $request->input('city');
+        $state = $request->input('state');
+
+        return response()->json([
+            'status' => 'success',
+            'totalprice' => $totalprice,
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'address' => $address,
+            'city' => $city,
+            'state' => $state,
+        ]);
+
+    }
 }
 

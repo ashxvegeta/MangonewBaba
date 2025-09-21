@@ -22,8 +22,19 @@
     <a href="#">My Account</a>
     @php
     use App\Models\Wishlist;
-    $userId = session('user')->id;
-    $wishlistCount = Wishlist::where('user_id', $userId)->count();
+    if(session('user')) {
+        $userId = session('user')->id;
+        if($userId) {
+        $wishlistCount = Wishlist::where('user_id', $userId)->count();
+        } else {    
+        $wishlistCount = 0;
+        }
+    } else {
+        $userId = null;
+    }
+    if(!$userId) {
+        $wishlistCount = 0;
+    }
     @endphp
     @if($wishlistCount > 0)
     <a href="{{ route('my.wishlist') }}">My Basket <span class="stock-label red">{{ $wishlistCount }} items</span></a>

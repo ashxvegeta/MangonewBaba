@@ -65,6 +65,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/order/details/{id}', [UserController::class, 'orderDetails'])->name('order.details');
     Route::get('/wishlist', [WishlistController::class, 'mywishlist'])->name('my.wishlist');
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist'])->name('add-to-wishlist');
+    Route::post('/proceed-to-pay', [CheckoutController::class, 'razorPay'])->name('proceed-to-pay');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
