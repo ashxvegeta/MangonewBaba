@@ -2,7 +2,7 @@
         <div class="row" id="header-logo">
             <!-- Logo -->
             <div class="site_logo">
-                <a href="#" class="logo">MangoBaba</a>
+                <a href="/" class="logo">MangoBaba</a>
             </div>
 
             <!-- Search Bar (Desktop) -->

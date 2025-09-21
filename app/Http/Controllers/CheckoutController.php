@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Razorpay\Api\Api;
 
 class CheckoutController extends Controller
 {
@@ -123,6 +124,69 @@ class CheckoutController extends Controller
             'state' => $state,
         ]);
 
+    }
+
+    // Duplicate placeOrder method removed to resolve redeclaration error.
+
+    public function placeonlineOrder(Request $request)
+    {
+        $order = new Order();
+        $order->user_id = session('user')->id;
+        $order->name = $request->input('name');
+        $order->email = $request->input('email');
+        $order->address = $request->input('address');
+        $order->phone = $request->input('phone');
+        $order->city = $request->input('city');
+        $order->state = $request->input('state');
+        $order->status = 0; // Default status
+        $order->message = $request->input('message');
+        //calculate total price
+        $total = 0;
+        $cartItemsTotal = Cart::where('user_id', session('user')->id)->get();
+        foreach ($cartItemsTotal as $prod) {
+            $total += $prod->product ? $prod->product->selling_price * $prod->prod_qty : 0;
+        }
+        //insert total price in order table
+        $order->total_price = $total;
+        $userName = preg_replace('/\s+/', '', strtolower(session('user')->name));
+        $order->tracking_no = $userName . rand(100000, 999999);
+        $order->payment_mode = 'Paid by Razorpay';
+        $order->payment_id = $request->input('payment_id'); // Store the payment ID from Razorpay
+        $order->save();
+
+        $cartItems = Cart::where('user_id', session('user')->id)->get();
+        foreach ($cartItems as $item) {
+
+           OrderItem::create([
+                'order_id' => $order->id,
+                'prod_id' => $item->prod_id,
+                'qty' => $item->prod_qty,
+                'price' => $item->product ? $item->product->selling_price : 0,
+            ]);
+
+            // Update product quantity
+            $product = Product::find($item->prod_id);
+            if ($product) {
+                $product->qty -= $item->prod_qty;
+                $product->save();
+            }
+        }
+
+        // Update product quantity
+        if (session('user')->address == null) {
+              $user =  User::where('id', session('user')->id)->first();
+              $user->name = $request->input('name');            
+              $user->address = $request->input('address');
+              $user->phone = $request->input('phone');
+              $user->city = $request->input('city');
+              $user->state = $request->input('state');
+              $user->update();
+
+              session(['user' => $user]);
+           }
+        $cartItems = Cart::where('user_id', session('user')->id)->get();
+        Cart::destroy($cartItems);
+        return response()->json(['status' => 'success', 'message' => 'Order placed successfully!']);
     }
 }
 

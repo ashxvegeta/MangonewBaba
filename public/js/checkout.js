@@ -69,24 +69,58 @@ $(document).ready(function() {
            };
              $.ajax({
                    method: "POST",
+                   
                      url: "/proceed-to-pay",
-                     data: data,
+                     headers: {
+                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                     },
+                     data: data,   
                      success: function (response) {
-                        alert(response.total_price);
-                        // var options = {
-                        //       "key": "rzp_test_1DP5mmOlF5G5ag", // Enter the Key ID generated from the Dashboard
-                        //       "amount": response.total_price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 100 refers to 100 paise
-                        //       "currency": "INR",
-                        //       "name": "E-commerce",
-                        //       "description": "Test Transaction",
-                        //       "image": "https://example.com/your_logo",
-                        //       "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                        //       "handler": function (responsea){
-                        //           // alert(responsea.razorpay_payment_id);
-                        //       }
-                        //   };
-                        //   var rzp1 = new Razorpay(options);
-                        //   rzp1.open();
+                        // alert(response.totalprice);
+                        var options = {
+                              "key": "rzp_test_Dm4JTBKZrK8gdF", // Enter the Key ID generated from the Dashboard
+                              "amount": response.totalprice * 100, // Amount is in currency subunits. Default currency is INR. Hence, 100 refers to 100 paise
+                              "currency": "INR",
+                              "name": response.name,
+                              "description": "Test Transaction",
+                              "image": "https://mangobaba.in/img/applogouu.png",
+                              // "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                              "handler": function (responsea){
+                                 //   alert(responsea.razorpay_payment_id);
+                                    $.ajax({
+                                          method: "POST",   
+                                          url: "/place-order",
+                                          headers: {
+                                              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                          },
+                                          data: {
+                                              'name': name,
+                                                'email': email,
+                                                'phone': phone,
+                                                'address': address,
+                                                'city': city,
+                                                'state': state,
+                                                'payment_mode': "Paid by Razorpay",
+                                                'payment_id': responsea.razorpay_payment_id,
+                                          },
+                                          success: function (responseb) {
+                                             // alert(responseb.status);
+                                            
+                                                 window.location.href = "/";
+                                             
+                                          }
+                                    });
+
+                              },
+                              prefill: {
+                                  "name": name,
+                                  "email": email,
+                                  "contact": phone
+                              },
+                              
+                          };
+                          var rzp1 = new Razorpay(options);
+                          rzp1.open();
                       }
                   });
               }
