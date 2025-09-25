@@ -188,5 +188,8 @@ class CheckoutController extends Controller
         Cart::destroy($cartItems);
         return response()->json(['status' => 'success', 'message' => 'Order placed successfully!']);
     }
+
+
+    
 }
 

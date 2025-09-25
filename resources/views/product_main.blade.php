@@ -14,6 +14,14 @@
 @include('user.navbar')
 
 
+  
+
+
+
+
+
+
+
   <div id="success-alert" class="alert alert-success alert-dismissible fade show d-none"
      role="alert"
      style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 300px; max-width: 500px; text-align: center;">
@@ -26,7 +34,43 @@
 
 
 
-<div class="container pt-5">
+<div class="container pt-5" style="display:flex:justify-content-center;width:50%;">
+
+<div class="modal-container" >
+<div   class="modal fade   "  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ $product->name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="rating-css">
+    <div class="star-icon">
+        <input type="radio" value="1" name="product_rating" checked id="rating1">
+        <label for="rating1" class="fa fa-star"></label>
+        <input type="radio" value="2" name="product_rating" id="rating2">
+        <label for="rating2" class="fa fa-star"></label>
+        <input type="radio" value="3" name="product_rating" id="rating3">
+        <label for="rating3" class="fa fa-star"></label>
+        <input type="radio" value="4" name="product_rating" id="rating4">
+        <label for="rating4" class="fa fa-star"></label>
+        <input type="radio" value="5" name="product_rating" id="rating5">
+        <label for="rating5" class="fa fa-star"></label>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
         <div class="row g-0  product-data">
             <div class="col-sm-12 col-lg-5 product-main-image-col">
                 <div class="product-main-image-box">
@@ -256,7 +300,7 @@
                         <div id="collapseAboutProduct" class="collapse show">
                             <div class="card-body">
                                 <p>
-                                    A popular sweet-tasting root vegetable, carrots are narrow and cone-shaped. They have thick, fleshy, deeply coloured roots which grow underground and feathery green leaves that emerge above the ground. While these greens are fresh-tasting and slightly bitter, the carrot roots are crunchy textured with a sweet and minty aromatic taste. Fresho! brings you the flavour and richness of the best quality carrots.
+                           {{ $product->description }}
                                 </p>
                             </div>
                         </div>
@@ -279,11 +323,17 @@
     </div>
 
 
+    
+
         <!-- here is fourth section started  -->
         <div class="container mt-4">
         <div class="row g-0">
         <h4 class="fw-bold">Rating and Reviews</h4>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Write a Review
+</button>
         <div class="alert alert-light d-flex align-items-center" role="alert">
+
             <i class="fas fa-comment-alt me-2"></i> Want to rate this product? You can rate or review this product only after purchasing from bigbasket
         </div>
             <div class="col-12 p-1 col-md-5">
