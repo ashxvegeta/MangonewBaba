@@ -10,6 +10,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\RatingController;
+
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/category', [FrontendController::class, 'Category'])->name('category');
@@ -67,6 +69,7 @@ Route::middleware(['user'])->group(function () {
     Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist'])->name('add-to-wishlist');
     Route::post('/proceed-to-pay', [CheckoutController::class, 'razorPay'])->name('proceed-to-pay');
     Route::post('/place-order', [CheckoutController::class, 'placeonlineOrder'])->name('place-order');
+    Route::post('/add-rating', [RatingController::class, 'addRating'])->name('add-rating');
 });
 Route::get('/details', [ProductController::class, 'showDetails'])->name('product.details');
 Route::get('/filter_product_list', [ProductController::class, 'filter_product_list'])->name('product.filter_product_list');
