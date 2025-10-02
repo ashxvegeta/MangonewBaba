@@ -23,7 +23,7 @@
 
       <form action="{{route('add-rating')}}" method="POST" >
         @csrf
-        <input type="text" value="{{ $product->id }}" name="product_id">
+        <input type="hidden" value="{{ $product->id }}" name="product_id">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{ $product->name }}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,6 +48,14 @@
               
               <input type="radio" value="5" name="product_rating" id="rating5">
               <label for="rating5" class="fa fa-star"></label>
+
+              <textarea 
+    name="comments" placeholder="Write A Review"
+    id="comments" 
+    class="form-control" 
+    style="width: 50%; margin: 15px auto; display: block; border: 1px solid #e3b80cff; border-radius: 4px; padding: 10px; min-height: 120px;"
+></textarea>
+              
             </div>
           </div>
         </div>
