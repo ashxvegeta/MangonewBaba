@@ -14,6 +14,7 @@ class RatingController extends Controller
 {
     $star_rated = $request->input('product_rating');
     $product_id = $request->input('product_id');
+    $review =  $request->review;
     $userId = session('user')->id;
 
     $product_check = Product::where('id', $product_id)->where('status', 1)->first();
@@ -28,12 +29,14 @@ class RatingController extends Controller
             $existing_rating = Rating::where('user_id', $userId)->where('prod_id', $product_id)->first();
             if($existing_rating) {
                 $existing_rating->star_rated = $star_rated; // Fixed variable name
+                $existing_rating->review = $review;
                 $existing_rating->update();
             } else {
                 Rating::create([ // Fixed typo in 'create'
                     'user_id' => $userId,
-                    'prod_id' => $product_id,
-                    'star_rated' => $star_rated
+                    'prod_id' => $product_id,   
+                    'star_rated' => $star_rated,
+                    'review' => $review
                 ]);
             }
             return redirect()->back()->with('success', 'You have successfully rated the product');

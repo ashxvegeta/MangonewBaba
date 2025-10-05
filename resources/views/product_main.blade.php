@@ -19,8 +19,7 @@
 <div class="modal-container rating-container">
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered"> <!-- small + centered -->
-      <div class="modal-content">
-
+      <div class="modal-content" style="width: 600px;margin-left: 250px;margin-right: 250px;">
       <form action="{{route('add-rating')}}" method="POST" >
         @csrf
         <input type="hidden" value="{{ $product->id }}" name="product_id">
@@ -50,10 +49,10 @@
               <label for="rating5" class="fa fa-star"></label>
 
               <textarea 
-    name="comments" placeholder="Write A Review"
+    name="review" placeholder="Write A Review"
     id="comments" 
     class="form-control" 
-    style="width: 50%; margin: 15px auto; display: block; border: 1px solid #e3b80cff; border-radius: 4px; padding: 10px; min-height: 120px;"
+    style="width: 90%; margin: 15px auto; display: block; border: 1px solid #e3b80cff; border-radius: 4px; padding: 10px; min-height: 120px;"
 ></textarea>
               
             </div>
@@ -359,45 +358,26 @@
         </div>
             <div class="col-12 p-1 col-md-5">
                 <div class="p-3 border rounded rating_box">
-                    <h2 class="text-success fw-bold">4.1 <i class="fas fa-star text-success"></i></h2>
-                    <p class="mb-2">444 ratings & 1 review</p>
+                    <h2 class="text-success fw-bold">{{$averageRating }}<i class="fas fa-star text-success"></i></h2>
+                    <p class="mb-2">{{$totalRatings}} ratings & {{$review_count}} review</p>
                     
                     <div>
-                        <div class="d-flex align-items-center">
-                            <span>5 <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2">
-                                <div class="progress-bar bg-success" style="width: 60%"></div>
+                    @foreach ([5,4,3,2,1] as $star)
+                        <div class="d-flex align-items-center mb-1">
+                            <span>{{ $star }} <i class="fas fa-star"></i></span>
+                            <div class="progress w-75 mx-2" style="height: 8px;">
+                                <div 
+                                    class="progress-bar
+                                        @if($star >= 4) bg-success
+                                        @elseif($star == 3) bg-info
+                                        @elseif($star == 2) bg-warning
+                                        @else bg-danger @endif"
+                                    style="width: {{ $ratingPercent[$star] ?? 0 }}%">
+                                </div>
                             </div>
-                            <span>240</span>
+                            <span>{{ $ratingsCounts[$star] ?? 0 }}</span>
                         </div>
-                        <div class="d-flex align-items-center">
-                            <span>4 <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2">
-                                <div class="progress-bar bg-success" style="width: 25%"></div>
-                            </div>
-                            <span>93</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <span>3 <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2">
-                                <div class="progress-bar bg-success" style="width: 15%"></div>
-                            </div>
-                            <span>57</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <span>2 <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2">
-                                <div class="progress-bar bg-warning" style="width: 10%"></div>
-                            </div>
-                            <span>22</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <span>1 <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2">
-                                <div class="progress-bar bg-danger" style="width: 8%"></div>
-                            </div>
-                            <span>32</span>
-                        </div>
+                    @endforeach
                     </div>
                 </div>
             </div>
