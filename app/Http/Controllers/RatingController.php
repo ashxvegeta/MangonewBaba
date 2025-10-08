@@ -47,4 +47,17 @@ class RatingController extends Controller
         return redirect()->back()->with('error', 'The link you followed was invalid');
     }
 }
+
+
+function getProductReviews(Request $request, $product_id){
+    $limit = $request->get('limit',2);
+    $offset = $request->get('offset', 0);
+    $reviews = Rating::where('prod_id',$product_id)
+    ->orderBy('created_at','desc')
+    ->skip($offset)
+    ->take($limit)
+    ->get();
+    return response()->json($reviews);
+}
+
 }

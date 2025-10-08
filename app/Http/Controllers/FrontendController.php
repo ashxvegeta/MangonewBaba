@@ -43,7 +43,12 @@ class FrontendController extends Controller
                 $rating =  Rating::where('prod_id',$product->id)->get();
                 $totalRatings = $rating->count();
                 $rating_sum =  Rating::where('prod_id',$product->id)->sum('star_rated');
+                if($rating_sum>1){
                 $averageRating =   $rating_sum/$rating->count();
+                }else{
+                    $averageRating = 0; 
+                }
+                
                 $ratingsCounts = [
                     5=>$rating->where('star_rated',5)->count(),
                     4=>$rating->where('star_rated',4)->count(),

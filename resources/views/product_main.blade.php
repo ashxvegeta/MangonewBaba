@@ -365,7 +365,7 @@
                     @foreach ([5,4,3,2,1] as $star)
                         <div class="d-flex align-items-center mb-1">
                             <span>{{ $star }} <i class="fas fa-star"></i></span>
-                            <div class="progress w-75 mx-2" style="height: 8px;">
+                            <div class="progress w-75 mx-2" style="height: 20px;">
                                 <div 
                                     class="progress-bar
                                         @if($star >= 4) bg-success
@@ -384,7 +384,7 @@
             <div class="col-12 col-md-7 p-1">
                 <div class="p-3 border rounded review_box">
                     <h5 class="fw-bold">Product Reviews</h5>
-                    <div class="p-3 border rounded bg-light mt-2">
+                    <!-- <div class="p-3 border rounded bg-light mt-2">
                         <span class="badge bg-success">3 <i class="fas fa-star"></i></span>
                         <strong class="ms-2">Very low quantity as per the price.</strong>
                         <p class="mb-1">Very low quantity as per the price. Taste was good.</p>
@@ -393,11 +393,84 @@
                             <i class="far fa-thumbs-up"></i> <span class="me-3">1</span>
                             <i class="far fa-flag"></i>
                         </div>
-                    </div>
+                    </div> -->
+
+                      <div id="reviews-container">
+        <!-- Reviews will be loaded here -->
+                      </div>
+
+                       <button id="load-more-reviews" class="btn btn-outline-success mt-3 w-100">
+        View More
+    </button>
+
+                   
+                    
                 </div>
             </div>
         </div>
       
     </div>
 @endsection
+
+@push('scripts')
+<script>
+   let offset = 0;
+   let limit  = 2;
+   const productId = {{ $product->id }};
+   function loadReviews(){
+    $.ajax({
+        url: `/product/${productId}/reviews`,
+         type: 'GET',
+        data:{offset:offset,limit:limit},
+       success: function (reviews) {
+
+    // 🟢 Case 1: No reviews and offset = 0
+    if (reviews.length === 0 && offset === 0) {
+        alert('dd'); // test alert
+        $('#reviews-container').append('<p>No reviews yet.</p>');
+        $('#load-more-reviews').hide();
+        return;
+    }
+
+    // 🟢 Case 2: Reviews exist
+    reviews.forEach(review => {
+        $('#reviews-container').append(`
+            <div class="p-3 border rounded bg-light mt-2">
+                <span class="badge bg-success">${review.star_rated} <i class="fas fa-star"></i></span>
+                <strong class="ms-2">${review.review ?? ''}</strong>
+                <p class="mb-1">${review.review ?? ''}</p>
+                <small class="text-muted">${review.user_name ?? 'Anonymous'}</small>
+                <div class="mt-2">
+                    <i class="far fa-thumbs-up"></i> <span class="me-3">${review.likes ?? 0}</span>
+                    <i class="far fa-flag"></i>
+                </div>
+            </div>
+        `);
+    });
+
+    // 🟢 Increase offset for next load
+    offset += reviews.length;
+
+    // 🟢 Hide button if less than limit reviews loaded
+    if (reviews.length < limit) {
+        $('#load-more-reviews').hide();
+    }
+},
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        }
+    });
+
+   }
+
+
+    $(document).ready(function () {
+            loadReviews();
+
+            $('#load-more-reviews').click(function () {
+                loadReviews();
+            });
+    });
+</script>
+@endpush
 
