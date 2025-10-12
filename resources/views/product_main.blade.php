@@ -356,9 +356,9 @@
 
             <i class="fas fa-comment-alt me-2"></i> Want to rate this product? You can rate or review this product only after purchasing from bigbasket
         </div>
-            <div class="col-12 p-1 col-md-5">
+            <div class="col-12 p-1 col-md-5" style="height: -webkit-fill-available;">
                 <div class="p-3 border rounded rating_box">
-                    <h2 class="text-success fw-bold">{{$averageRating }}<i class="fas fa-star text-success"></i></h2>
+                    <h2 class="text-success fw-bold">{{number_format($averageRating, 1) }}<i class="fas fa-star text-success"></i></h2>
                     <p class="mb-2">{{$totalRatings}} ratings & {{$review_count}} review</p>
                     
                     <div>
@@ -426,7 +426,6 @@
 
     // 🟢 Case 1: No reviews and offset = 0
     if (reviews.length === 0 && offset === 0) {
-        alert('dd'); // test alert
         $('#reviews-container').append('<p>No reviews yet.</p>');
         $('#load-more-reviews').hide();
         return;
@@ -439,11 +438,7 @@
                 <span class="badge bg-success">${review.star_rated} <i class="fas fa-star"></i></span>
                 <strong class="ms-2">${review.review ?? ''}</strong>
                 <p class="mb-1">${review.review ?? ''}</p>
-                <small class="text-muted">${review.user_name ?? 'Anonymous'}</small>
-                <div class="mt-2">
-                    <i class="far fa-thumbs-up"></i> <span class="me-3">${review.likes ?? 0}</span>
-                    <i class="far fa-flag"></i>
-                </div>
+                <small class="text-muted">${review.user_name ?? 'Anonymous'}</small>,<small class="text-muted">(${review.created_at})</small>
             </div>
         `);
     });

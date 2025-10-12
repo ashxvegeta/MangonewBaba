@@ -57,7 +57,16 @@ function getProductReviews(Request $request, $product_id){
     ->skip($offset)
     ->take($limit)
     ->get();
-    return response()->json($reviews);
+
+     $formatted = $reviews->map(function ($review) {
+        return [
+            'star_rated' => $review->star_rated,
+            'review' => $review->review,
+            'user_name' => $review->user->name ?? 'Anonymous',
+            'created_at' => $review->created_at->diffForHumans(),
+        ];
+    });
+    return response()->json($formatted);
 }
 
 }
