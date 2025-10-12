@@ -34,11 +34,12 @@
           <div class="rating-css">
             <div class="star-icon">
                 @php
-    $userRating = $userRating->star_rated ?? 0;
+    $userrating = $userRating->star_rated ?? 0;
+    $userreview = $userRating->review ?? '';
 @endphp
                 @for ($i = 1; $i <= 5; $i++)
         <input type="radio" value="{{ $i }}" name="product_rating" id="rating{{ $i }}"
-               {{ $userRating == $i ? 'checked' : '' }}>
+               {{ $userrating == $i ? 'checked' : '' }}>
         <label for="rating{{ $i }}" class="fa fa-star"></label>
     @endfor
 
@@ -47,7 +48,7 @@
     id="comments" 
     class="form-control" 
     style="width: 90%; margin: 15px auto; display: block; border: 1px solid #e3b80cff; border-radius: 4px; padding: 10px; min-height: 120px;"
-></textarea>
+> {{ $userreview }}</textarea>
               
             </div>
           </div>
