@@ -33,20 +33,14 @@
         <div class="modal-body">
           <div class="rating-css">
             <div class="star-icon">
-              <input type="radio" value="1" name="product_rating" checked id="rating1">
-              <label for="rating1" class="fa fa-star"></label>
-              
-              <input type="radio" value="2" name="product_rating" id="rating2">
-              <label for="rating2" class="fa fa-star"></label>
-              
-              <input type="radio" value="3" name="product_rating" id="rating3">
-              <label for="rating3" class="fa fa-star"></label>
-              
-              <input type="radio" value="4" name="product_rating" id="rating4">
-              <label for="rating4" class="fa fa-star"></label>
-              
-              <input type="radio" value="5" name="product_rating" id="rating5">
-              <label for="rating5" class="fa fa-star"></label>
+                @php
+    $userRating = $userRating->star_rated ?? 0;
+@endphp
+                @for ($i = 1; $i <= 5; $i++)
+        <input type="radio" value="{{ $i }}" name="product_rating" id="rating{{ $i }}"
+               {{ $userRating == $i ? 'checked' : '' }}>
+        <label for="rating{{ $i }}" class="fa fa-star"></label>
+    @endfor
 
               <textarea 
     name="review" placeholder="Write A Review"

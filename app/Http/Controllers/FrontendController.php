@@ -65,7 +65,9 @@ class FrontendController extends Controller
                  $ratingPercent[$star] = $totalRatings > 0  ? round(($count/$totalRatings)*100,1):0;
                 }
                 $review_count = $rating->whereNotNull('review')->where('review','!=','')->count();
-                return view('product_main', compact('product', 'category','averageRating','ratingsCounts','ratingPercent','review_count','totalRatings'));
+                $userRating =  Rating::where('prod_id',$product->id)
+                ->where('user_id', session('user')->id ?? 0)->first();
+                return view('product_main', compact('product', 'category','averageRating','ratingsCounts','ratingPercent','review_count','totalRatings','userRating'));
             } else {
                 return redirect()->route('view-category', $cat_slug)->with('error', 'Product not found');
             }
