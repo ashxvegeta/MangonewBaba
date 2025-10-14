@@ -12,7 +12,7 @@
         <div class="content-wrapper">
     <div class="row mb-4 align-items-center">
   <div class="col-12 col-sm-4 mb-2 mb-sm-0">
-    <h1 class="text-white  text-sm-left">Update Categories</h1>
+    <h1 class="text-white  text-sm-left">Update Product</h1>
   </div>
   <div class="col-12 col-sm-2  text-sm-right">
     <a href="{{route('view-admin-category')}}" class="btn btn-primary">Back</a>

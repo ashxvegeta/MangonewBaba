@@ -54,6 +54,9 @@
 @include('home_category')
 
 @include('topoffers')
+
+
+@include('user.footer')
  
 @endsection
 

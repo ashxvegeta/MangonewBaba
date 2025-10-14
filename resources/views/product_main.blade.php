@@ -342,7 +342,7 @@
 
         <!-- here is fourth section started  -->
         <div class="container mt-4">
-        <div class="row g-0">
+        <div class="row g-0 mb-5">
         <h4 class="fw-bold">Rating and Reviews</h4>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Write a Review
@@ -405,6 +405,7 @@
         </div>
       
     </div>
+    @include('user.footer')
 @endsection
 
 @push('scripts')
