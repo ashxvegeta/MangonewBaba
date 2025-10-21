@@ -9,7 +9,7 @@
             <div class="search-bar">
                <form action="{{ route('search') }}" method="post">
                    @csrf
-                   <input type="text" placeholder="Search for products..." name="search" class="border border-dark" id="search-input">
+                   <input type="text" placeholder="Search for products..." name="search" class="border border-success" id="search-input">
                    <button class="search-btn" id="search-btn" type="submit"> <i class="fa fa-search"></i></button>
                </form>
                 <div id="search-results"></div>
@@ -40,22 +40,22 @@
     }
     @endphp
     @if($wishlistCount > 0)
-    <a href="{{ route('my.wishlist') }}">My Basket <span class="stock-label red">{{ $wishlistCount }} items</span></a>
+    <a href="{{ route('view_cart') }}">My Basket <span class="stock-label red">{{ $wishlistCount }} items</span></a>
     @endif
     <a href="{{ route('user.orders') }}">My Orders</a>
-    <a href="#">My Smart Basket</a>
-    <a href="#">My Wallet <span class="stock-label green">₹0</span></a>
+    <!-- <a href="#">My Smart Basket</a> -->
+    <!-- <a href="#">My Wallet <span class="stock-label green">₹0</span></a> -->
     <a href="#">Contact Us</a>
-    <a href="#">Logout</a>
+    <a href="{{ route('logout') }}">Logout</a>
 </div>
             <!-- Login/Signup Buttons -->
-            <div>
+            <!-- <div>
                 @if(!session('user'))
                 <button class="login-signup-btn">Login/Sign Up</button>
                @else
                <button class="login-signup-btn"><a class="text-white" href="{{ route('logout') }}">Logout</a></button>
                 @endif
-            </div>
+            </div> -->
                 @php
                 use App\Http\Controllers\CartController;
                 $total = 0;

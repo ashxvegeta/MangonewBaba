@@ -47,6 +47,15 @@
         });
     </script>
     @endif
+      <!-- WhatsApp Floating Button -->
+<div class="whatsapp_icon">
+    <a href="https://wa.me/8840976941" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+        <img src="{{ asset('images/watsapp_icon.png') }}" alt="WhatsApp" width="50" height="50">
+
+    </a>
+</div>
+
+    
 </body>
 
 </html>

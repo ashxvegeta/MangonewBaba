@@ -89,7 +89,10 @@
 
 </div>
 </div>
+<pre>
 
+
+</pre>
 @endsection
 
 @push('scripts')
