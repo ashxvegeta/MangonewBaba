@@ -7,8 +7,11 @@
 
             <!-- Search Bar (Desktop) -->
             <div class="search-bar">
-                <input type="text" placeholder="Search for products..." name="search" class="border border-dark" id="search-input">
-                <button class="search-btn" id="search-btn" type="button"> <i class="fa fa-search"></i></button>
+               <form action="{{ route('search') }}" method="post">
+                   @csrf
+                   <input type="text" placeholder="Search for products..." name="search" class="border border-dark" id="search-input">
+                   <button class="search-btn" id="search-btn" type="submit"> <i class="fa fa-search"></i></button>
+               </form>
                 <div id="search-results"></div>
             </div>
 

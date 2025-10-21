@@ -76,6 +76,15 @@ class FrontendController extends Controller
             return redirect()->route('category')->with('error', 'Category not found');
         }
     }
+
+    public function Search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $products = Product::where('name', 'LIKE', '%' . $searchTerm . '%')
+            ->where('status', 1)
+            ->get();
+        return view('search_products', compact('products', 'searchTerm'));
+    }
 }
 
 

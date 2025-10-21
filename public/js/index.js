@@ -18,6 +18,7 @@
         $(document).ready(function() {
             // Function to perform the search
             function performSearch() {
+                return;
                 const searchQuery = $('#search-input').val().trim(); // Get value from search input
 
                 if (searchQuery) { // Ensure the search query is not empty
@@ -42,25 +43,25 @@
             }
 
             // Listen for the `input` event to update search results dynamically as the user types
-            $('#search-input').on('input', performSearch);
+            // $('#search-input').on('input', performSearch);
 
             // Alternatively, trigger search on Enter key press
-            $('#search-input').on('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    performSearch();
-                }
-            });
+            // $('#search-input').on('keydown', function(event) {
+            //     if (event.key === 'Enter') {
+            //         performSearch();
+            //     }
+            // });
 
             // Trigger search on button click
             $('#search-btn').on('click', performSearch);
 
             // Hide search results when clicking outside the search input or results
-            $(document).on('click', function(event) {
-                if (!$(event.target).closest('#search-input, #search-results').length) {
-                    // If the click is outside the search input and results
-                    $('#search-results').hide();
-                }
-            });
+            // $(document).on('click', function(event) {
+            //     if (!$(event.target).closest('#search-input, #search-results').length) {
+            //         // If the click is outside the search input and results
+            //         $('#search-results').hide();
+            //     }
+            // });
 
             // Prevent hiding the dropdown when clicking inside it
             $('#search-results').on('click', function(event) {
