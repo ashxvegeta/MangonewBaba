@@ -12,38 +12,10 @@
 
 @section('content')
 <!-- <div class="container-fluid"> -->
-<div class="container">
-    <div class="row" id="header-logo">
-        <!-- Logo -->
-        <div class="site_logo">
-            <a href="#" class="logo">MangoBaba</a>
-        </div>
-
-        <!-- Search Bar (Desktop) -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search for products..." name="search" class="border border-dark"
-                id="search-input">
-            <button class="search-btn" id="search-btn" type="button"> <i class="fa fa-search"></i></button>
-            <div id="search-results"></div>
-        </div>
-
-        <!-- Login/Signup Buttons -->
-        <div>
-            <button class="login-signup-btn">Login/Sign Up</button>
-        </div>
-
-        <!-- Add to Cart Icon -->
-        <div class="addtocartlogo px-2">
-            <a href="#" class="addtocart-btn">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
-        </div>
-    </div>
-</div>
-</div>
-
+@include('user.header')
+@include('user.navbar')
 <!-- Navbar -->
-<div class="container" id="container-mobile">
+<!-- <div class="container" id="container-mobile">
     <div class="nav_mobile_full">
         <div class="nav-full-width">
             <nav class="navbar navbar-expand-lg navbar-light px-1 w-100">
@@ -80,7 +52,7 @@
             </nav>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Carousel -->
 <!-- <div class="container-fluid"> -->
