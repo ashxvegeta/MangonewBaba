@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_variants', function (Blueprint $table) {
-           $table->id();
+            $table->id();
             $table->unsignedBigInteger('product_id');
             $table->string('attribute_name')->nullable();   // e.g. "Weight"
             $table->string('attribute_value');             // e.g. "1 kg"

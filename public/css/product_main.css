@@ -1,3 +1,15 @@
+.variant-option {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.variant-option input:checked + .card_resize {
+    border: 2px solid #198754 !important;
+    background-color: #e9f8ef;
+    box-shadow: 0 0 10px rgba(25, 135, 84, 0.2);
+}
+
+
 .rating-css div {
     color: #ffe400;
     font-size: 30px;

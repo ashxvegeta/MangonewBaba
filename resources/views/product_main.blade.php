@@ -151,9 +151,8 @@
 
                     <div class="mb-4">
                         <div class="text-secondary fw-bold price_now"> Price: ₹{{ $product->selling_price }}
-                            <!-- <span class="price_weight">(&#8377; 0.06 / g)</span> -->
                         </div>
-                        <div class="text-success fw-bold"> You Save: {{ round((($product->original_price - $product->selling_price) / $product->original_price) * 100) }}% OFF</div>
+                        <div class="text-success fw-bold product-off-percentage"> You Save: {{ round((($product->original_price - $product->selling_price) / $product->original_price) * 100) }}% OFF</div>
                       
                        @if($product->qty > 0)
                             <small class="text-white badge badge-success">{{ 'In Stock' }}</small>
@@ -186,18 +185,33 @@
                     <div class="mb-2">
                         <h5 class="mb-3">Pack sizes</h5>
                         <div class="row g-3">
-                            <div class="col-6 col-md-6">
-                                <div class="card_resize p-2 border-primary">
-                                    <div class="fw-bold">1 kg</div>
-                                    <div class=" align-items-center">
-                                        <span class="text-danger fw-bold">₹300</span>
-                                        <small class="text-muted ms-2"><del>₹400</del></small>
-                                    </div>
-                                    <small class="text-success">25% OFF</small>
-                                </div>
-                            </div>
+                          @foreach($product->variants as $variant)
+    <div class="col-6 col-md-6">
+        <label class="variant-option w-100">
+            <input 
+                type="radio" 
+                name="variant_id" 
+                value="{{ $variant->id }}" 
+                hidden
+                data-price="{{ $variant->price }}" 
+                data-original-price="{{ $variant->original_price }}">
+            <div class="card_resize p-2 border mb-2 text-center">
+                <div class="fw-bold">{{ $variant->attribute_value }}</div>
+                <div class="align-items-center">
+                    <span class="text-danger fw-bold">₹{{ $variant->price }}</span>
+                    <small class="text-muted ms-2">
+                        <del>₹{{ $variant->original_price }}</del>
+                    </small>
+                </div>
+                <small class="text-success">
+                    {{ round((($variant->original_price - $variant->price) / $variant->original_price) * 100) }}% OFF
+                </small>
+            </div>
+        </label>
+    </div>
+@endforeach
 
-                            <div class="col-6 col-md-6">
+                            <!-- <div class="col-6 col-md-6">
                                 <div class="card_resize p-2">
                                     <div class="fw-bold">2 kg</div>
                                     <div class="d-flex align-items-center">
@@ -206,9 +220,9 @@
                                     </div>
                                     <small class="text-success">25% OFF</small>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-6 col-md-6">
+                            <!-- <div class="col-6 col-md-6">
                                 <div class="card_resize p-2">
                                     <div class="fw-bold">3 kg</div>
                                     <div class="d-flex align-items-center">
@@ -217,9 +231,9 @@
                                     </div>
                                     <small class="text-success">25% OFF</small>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-6 col-md-6">
+                            <!-- <div class="col-6 col-md-6">
                                 <div class="card_resize p-2 bg-light">
                                      <div class="fw-bold">4 kg</div>
                                     <div class="d-flex align-items-center">
@@ -228,7 +242,7 @@
                                     </div>
                                     <small class="text-success">25% OFF</small>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -456,13 +470,23 @@
 
    }
 
-
     $(document).ready(function () {
             loadReviews();
 
             $('#load-more-reviews').click(function () {
                 loadReviews();
             });
+    });
+
+    $(document).ready(function() {
+        $('input[name="variant_id"]').on('change', function() {
+            let price = $(this).data('price');
+            let originalPrice = $(this).data('original-price');
+            let discountPercentage = Math.round(((originalPrice - price) / originalPrice) * 100);
+            $('.price_now').html(`Price: ₹${price}`);
+            $('.price_was').text(`₹${originalPrice}`);
+            $('.product-off-percentage').html(`You Save: ${discountPercentage}% OFF`);
+        });
     });
 </script>
 @endpush
