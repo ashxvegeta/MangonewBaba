@@ -64,12 +64,23 @@
                 <div class="seller-info"><i class="fa fa-check-circle"></i> Har Din Sasta!</div>
                 <div class="fw-semibold">{{ $item->product->name }}</div>
                 <div>
-                    <span class="price">₹{{ $item->product->selling_price}}</span>
-                    <span class="old-price ms-1">₹{{ $item->product->original_price}}</span>
+                    @if($item->variant)
+    <span class="price">₹{{ $item->variant->price }}</span>
+    <span class="old-price ms-1">₹{{ $item->variant->original_price }}</span>
+
+    @php
+    $perproduct_saving = $item->prod_qty * ($item->variant->original_price - $item->variant->price);
+    @endphp
+@else
+    <span class="price">₹{{ $item->product->selling_price}}</span>
+    <span class="old-price ms-1">₹{{ $item->product->original_price}}</span>
+
+    @php
+    $perproduct_saving = $item->prod_qty * ($item->product->original_price - $item->product->selling_price);
+    @endphp
+@endif
                 </div>
-                 @php
-                $perproduct_saving = $item->prod_qty* ($item->product->original_price - $item->product->selling_price) ;
-                @endphp
+             
                 <div class="saved">Saved: ₹{{ $perproduct_saving }}</div>
             </div>
 
@@ -87,10 +98,15 @@
                     <a href="#" class="text-secondary ms-2">Save for later</a>
                 </div>
 
-                      @php
-                      $total += $item->product->selling_price * $item->prod_qty;
-        $totasavings += ($item->product->original_price - $item->product->selling_price) * $item->prod_qty;
-      @endphp 
+ @php
+if($item->variant) {
+    $total += $item->variant->price * $item->prod_qty;
+    $totasavings += ($item->variant->original_price - $item->variant->price) * $item->prod_qty;
+} else {
+    $total += $item->product->selling_price * $item->prod_qty;
+    $totasavings += ($item->product->original_price - $item->product->selling_price) * $item->prod_qty;
+}
+@endphp
 
       @else
       <div class="out-of-stock text-danger">Out of Stock</div>
@@ -101,7 +117,12 @@
 
             <!-- Sub-total -->
             <div class="col-md-3 col-6 text-right mt-3 mt-md-0">
-                <span class="item-subtotal">₹{{ $item->product->selling_price * $item->prod_qty }} </span>
+               @if($item->variant)
+    <span class="item-subtotal">₹{{ $item->variant->price * $item->prod_qty }}</span>
+@else
+    <span class="item-subtotal">₹{{ $item->product->selling_price * $item->prod_qty }}</span>
+@endif
+
             </div>
         </div>
     </div>

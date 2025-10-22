@@ -2,6 +2,7 @@ $(document).on('click', '.addToCartBtn', function(e) {
     e.preventDefault();
     var prod_id = $('.prod_id').val();
     var qty = $('.qty-input').val();
+    var variant_id = $('input[name="variant_id"]:checked').val();
 
     $.ajax({
         method: "POST",
@@ -9,6 +10,7 @@ $(document).on('click', '.addToCartBtn', function(e) {
         data: {
             prod_id: prod_id,
             prod_qty: qty,
+            variant_id: variant_id, 
            _token: $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {

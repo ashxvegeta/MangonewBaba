@@ -14,6 +14,7 @@ class CartController extends Controller
         
         $productId = $request->input('prod_id');
         $quantity = $request->input('prod_qty');
+        $variantId = $request->input('variant_id');
 
         // Get the authenticated user
         $user = $request->session()->get('user');
@@ -23,9 +24,15 @@ class CartController extends Controller
         }
         // Create or update the cart item
         $cartItem = Cart::updateOrCreate(
-            ['user_id' => $user->id, 'prod_id' => $productId],
-            ['prod_qty' => $quantity]
-        );
+    [
+        'user_id' => $user->id,
+        'prod_id' => $productId,
+        'variant_id' => $variantId  // include variant here
+    ],
+    [
+        'prod_qty' => $quantity
+    ]
+);
         $cartcount = Cart::where('user_id',session('user')->id)->get()->count();
         return response()->json([
         'status' => 'success',
