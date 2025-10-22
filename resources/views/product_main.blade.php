@@ -179,9 +179,7 @@
                         }
                         @endphp
                         <input type="text" name="quantity" class="form-control text-center qty-input" value="{{ $existingQty }} " >
-                        <span class="input-group-text increment-btn" style="cursor: pointer;    background:#dc3545;;
-    color: #fff;
-">+</span>
+                        <span class="input-group-text increment-btn" style="cursor: pointer;background:#dc3545;color: #fff;">+</span>
                         </div>
                     </div>
 
@@ -192,39 +190,43 @@
                                 <div class="card_resize p-2 border-primary">
                                     <div class="fw-bold">1 kg</div>
                                     <div class=" align-items-center">
-                                        <span class="text-danger fw-bold">₹40</span>
-                                        <small class="text-muted ms-2"><del>₹64</del></small>
+                                        <span class="text-danger fw-bold">₹300</span>
+                                        <small class="text-muted ms-2"><del>₹400</del></small>
                                     </div>
-                                    <small class="text-success">38% OFF</small>
+                                    <small class="text-success">25% OFF</small>
                                 </div>
                             </div>
 
                             <div class="col-6 col-md-6">
                                 <div class="card_resize p-2">
-                                    <div class="fw-bold">250 g</div>
+                                    <div class="fw-bold">2 kg</div>
                                     <div class="d-flex align-items-center">
-                                        <span class="text-danger fw-bold">₹16.44</span>
-                                        <small class="text-muted ms-2"><del>₹30.95</del></small>
+                                        <span class="text-danger fw-bold">₹600</span>
+                                        <small class="text-muted ms-2"><del>₹700</del></small>
                                     </div>
-                                    <small class="text-success">20% OFF</small>
+                                    <small class="text-success">25% OFF</small>
                                 </div>
                             </div>
 
                             <div class="col-6 col-md-6">
                                 <div class="card_resize p-2">
-                                    <div class="fw-bold">500 g</div>
+                                    <div class="fw-bold">3 kg</div>
                                     <div class="d-flex align-items-center">
-                                        <span class="text-danger fw-bold">₹31.78</span>
-                                        <small class="text-muted ms-2"><del>₹39.73</del></small>
+                                        <span class="text-danger fw-bold">₹700</span>
+                                        <small class="text-muted ms-2"><del>₹800</del></small>
                                     </div>
-                                    <small class="text-success">20% OFF</small>
+                                    <small class="text-success">25% OFF</small>
                                 </div>
                             </div>
 
                             <div class="col-6 col-md-6">
                                 <div class="card_resize p-2 bg-light">
-                                    <div class="fw-bold text-muted">5 kg</div>
-                                    <div class="text-muted small">Not available</div>
+                                     <div class="fw-bold">4 kg</div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-danger fw-bold">₹800</span>
+                                        <small class="text-muted ms-2"><del>₹900</del></small>
+                                    </div>
+                                    <small class="text-success">25% OFF</small>
                                 </div>
                             </div>
                         </div>
