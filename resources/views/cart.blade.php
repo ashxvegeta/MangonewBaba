@@ -62,7 +62,7 @@
             <!-- Product Details -->
             <div class="col-md-4 col-8">
                 <div class="seller-info"><i class="fa fa-check-circle"></i> Har Din Sasta!</div>
-                <div class="fw-semibold">{{ $item->product->name }}</div>
+                <div class="fw-semibold">{{ $item->product->name }}&nbsp({{$item->variant->attribute_value}})</div>
                 <div>
                     @if($item->variant)
     <span class="price">₹{{ $item->variant->price }}</span>

@@ -77,12 +77,12 @@
                 <img src="{{ asset('images/products/' . $item->product->image) }}" alt="{{ $item->product->name }}" style="border-radius: 4px; width: 32px; height: 32px;">
                 <div>
                     <div style="font-weight: bold; font-size: 14px;">{{ $item->product->name }}</div>
-                    <div style="font-size: 12px; color: gray;">{{ $item->prod_qty }}kg</div>
+                    <div style="font-size: 12px; color: gray;">{{ $item->variant->attribute_value}}</div>
                 </div>
             </div>
-            <div style="font-weight: bold; font-size: 14px;">₹{{ $item->product->selling_price }}</div>
+            <div style="font-weight: bold; font-size: 14px;">₹{{ $item->variant->price * $item->prod_qty }}</div>
         </div>
-        <?php $total += $item->product->selling_price; ?>
+        <?php $total += $item->variant->price * $item->prod_qty; ?>
         @endforeach
     </div>
 
