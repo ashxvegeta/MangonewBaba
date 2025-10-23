@@ -88,9 +88,16 @@
             <div class="col-md-3 col-6 text-center mt-3 mt-md-0">
               @if($item->product->qty > $item->prod_qty)
                 <div class="quantity-control mx-auto">
-                    <button type="button" class="decrement-btn change-quantity" data-action="decrement" data-id="{{ $item->prod_id }}">−</button>
+                    
+<button type="button" class="decrement-btn change-quantity" 
+    data-action="decrement" 
+    data-id="{{ $item->prod_id }}"
+    data-variant="{{ $item->variant_id }}">−</button>
                     <input type="text" value="{{ $item->prod_qty }}" readonly class="qty-input">
-                    <button type="button" class="increment-btn change-quantity" data-action="increment" data-id="{{ $item->prod_id }}">+</button>
+               <button type="button" class="increment-btn change-quantity" 
+    data-action="increment" 
+    data-id="{{ $item->prod_id }}"
+    data-variant="{{ $item->variant_id }}">+</button>
                 </div>
             
                 <div class="actions mt-2">
@@ -155,7 +162,7 @@ if($item->variant) {
             <i class="fa fa-clock-o fa-lg mr-2"></i>
             <div class="text-left Schedule-delivery">
               <div class="fw-600">Schedule delivery</div>
-              <small class="d-block text-muted">Get it in 2 hrs</small>
+              <small class="d-block text-muted">Get it in 2 Days</small>
             </div>
           </div>
         </button>

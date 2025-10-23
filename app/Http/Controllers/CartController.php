@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ProductVariant;
+
 
 class CartController extends Controller
 {
@@ -67,42 +69,57 @@ class CartController extends Controller
         }
     }
 
-    public function updateCartItem(Request $request)
-    {
-        // Validate the request
-        $prod_id = $request->input('prod_id');
-        $quantity = $request->input('prod_qty');
-        $userId = session('user')->id;
-        // Find the cart item
-        $cartItem = Cart::where('user_id', $userId)->where('prod_id', $prod_id)->first();
+public function updateCartItem(Request $request)
+{
+    $userId = session('user')->id;
+    $prod_id = $request->input('prod_id');
+    $variant_id = $request->input('variant_id');
+    $quantity = $request->input('prod_qty');
 
-        if ($cartItem) {
-            // Update the quantity
-            $cartItem->prod_qty = $quantity;
-            $cartItem->save();
-            // Calculate new subtotal for this perticular product 
-            $subtotal = $cartItem->product->selling_price * $cartItem->prod_qty;
-            // Calculate per product saving
-            $perProductSaving = round($cartItem->prod_qty * ($cartItem->product->original_price - $cartItem->product->selling_price), 2);
-            $totalSavings = Cart::where('user_id', $userId)
-            ->get()
-            ->sum(fn($item) => $item->prod_qty * ($item->product->original_price - $item->product->selling_price));
-            // Calculate new total for all items in cart
-            $total = Cart::where('user_id', $userId)
-            ->get()
-            ->sum(fn($item) => $item->product->selling_price * $item->prod_qty);
-            return response()->json([
-            'status' => 'success',
-            'message' => 'Cart item updated successfully!',
-            'perProductSaving' => $perProductSaving,
-            'totalSavings' => $totalSavings,
-            'subtotal' => $subtotal,
-            'total' => $total
-        ]);
-        } else {
-            return response()->json(['status' => 'error', 'message' => 'Cart item not found.']);
-        }
+    // ✅ find the exact cart item (product + variant)
+    $cartItem = Cart::where('user_id', $userId)
+        ->where('prod_id', $prod_id)
+        ->where('variant_id', $variant_id)
+        ->first();
+
+    if (!$cartItem) {
+        return response()->json(['status' => 'error', 'message' => 'Cart item not found']);
     }
+
+    // ✅ update quantity
+    $cartItem->prod_qty = $quantity;
+    $cartItem->save();
+
+    // ✅ fetch variant price or fallback to product price
+    $variant = ProductVariant::find($variant_id);
+    $sellingPrice = $variant ? $variant->price : $cartItem->product->selling_price;
+    $originalPrice = $variant ? $variant->original_price : $cartItem->product->original_price;
+
+    // ✅ calculate item subtotal
+    $itemSubtotal = $sellingPrice * $quantity;
+
+    // ✅ calculate cart total and savings
+    $cartItems = Cart::where('user_id', $userId)->get();
+    $cartTotal = 0;
+    $totalSavings = 0;
+
+    foreach ($cartItems as $item) {
+        $v = ProductVariant::find($item->variant_id);
+        $price = $v ? $v->price : $item->product->selling_price;
+        $orig = $v ? $v->original_price : $item->product->original_price;
+        $cartTotal += $price * $item->prod_qty;
+        $totalSavings += ($orig - $price) * $item->prod_qty;
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'item_subtotal' => number_format($itemSubtotal, 2),
+        'cart_total' => number_format($cartTotal, 2),
+        'total_savings' => number_format($totalSavings, 2),
+        'message' => 'Cart updated successfully!'
+    ]);
+}
+
 
 
     static function countcartproduct(){
